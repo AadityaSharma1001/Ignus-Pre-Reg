@@ -251,7 +251,7 @@ export const Desktop = () => {
 
                             <div className="flex w-full items-center justify-center gap-8">
                                 <a
-                                    href="https://www.instagram.com/#"
+                                    href="https://www.instagram.com/ignus_iitj/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="transition-transform hover:scale-110"
@@ -263,7 +263,7 @@ export const Desktop = () => {
                                     />
                                 </a>
                                 <a
-                                    href="https://www.facebook.com/#"
+                                    href="https://www.facebook.com/ignus.iitj/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="transition-transform hover:scale-110"
@@ -275,7 +275,7 @@ export const Desktop = () => {
                                     />
                                 </a>
                                 <a
-                                    href="https://www.youtube.com/#"
+                                    href="https://www.youtube.com/user/IgnusIITJodhpur"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="transition-transform hover:scale-110"
