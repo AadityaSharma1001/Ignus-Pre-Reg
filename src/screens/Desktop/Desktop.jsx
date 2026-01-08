@@ -81,56 +81,20 @@ export const Desktop = () => {
                 <div className="w-full min-h-[1800px] sm:min-h-[2000px] md:min-h-[2200px] lg:min-h-[2300px] h-auto relative">
                     <div className="absolute top-[1100px] left-0 w-full h-[1136px] flex rotate-180">
                         <div className="w-full h-[1136.17px] relative bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(9,15,37,1)_100%)]">
-                            <img
-                                className="w-[8.26%] h-[15.18%] top-[12.98%] left-[9.31%] absolute -rotate-180"
-                                alt="Ellipse decoration"
-                                src="/src/assets/ellipse-2-1.svg"
-                            />
-
-                            <img
-                                className="w-[10.47%] h-[14.38%] top-[70.01%] left-[74.72%] absolute -rotate-180"
-                                alt="Ellipse decoration"
-                                src="/src/assets/ellipse-4-1.svg"
-                            />
-
-                            <img
-                                className="w-[10.79%] h-[11.86%] top-[16.85%] left-[16.92%] absolute -rotate-180"
-                                alt="Ellipse decoration"
-                                src="/src/assets/ellipse-3-1.svg"
-                            />
-
-                            <img
-                                className="w-[8.16%] h-[8.60%] top-[79.90%] left-[80.42%] absolute -rotate-180"
-                                alt="Ellipse decoration"
-                                src="/src/assets/ellipse-5.svg"
-                            />
+                            {/* 4 Corner particles - rotated section */}
+                            <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 top-[5%] left-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-top-left 5s linear infinite' }} />
+                            <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 top-[5%] right-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-top-right 5s linear infinite' }} />
+                            <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bottom-[5%] left-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-bottom-left 5s linear infinite' }} />
+                            <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bottom-[5%] right-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-bottom-right 5s linear infinite' }} />
                         </div>
                     </div>
 
                     <div className="absolute top-0 left-0 w-full h-[1100px] bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(9,15,37,1)_100%)]">
-                        <img
-                            className="absolute w-[8.26%] h-[15.18%] top-[12.98%] left-[9.31%]"
-                            alt="Ellipse decoration"
-                            src="/src/assets/ellipse-2.svg"
-                        />
-
-                        <img
-                            className="absolute w-[10.47%] h-[14.38%] top-[70.01%] left-[74.72%]"
-                            alt="Ellipse decoration"
-                            src="/src/assets/ellipse-4.svg"
-                        />
-
-                        <img
-                            className="absolute w-[10.79%] h-[11.86%] top-[16.85%] left-[16.92%]"
-                            alt="Ellipse decoration"
-                            src="/src/assets/ellipse-3.svg"
-                        />
-
-                        <img
-                            className="absolute w-[8.16%] h-[8.60%] top-[79.90%] left-[80.42%]"
-                            alt="Ellipse decoration"
-                            src="/src/assets/ellipse-5-1.svg"
-                        />
+                        {/* 4 Corner particles - normal section */}
+                        <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 top-[5%] left-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-top-left 5s linear infinite' }} />
+                        <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 top-[5%] right-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-top-right 5s linear infinite' }} />
+                        <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bottom-[5%] left-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-bottom-left 5s linear infinite' }} />
+                        <div className="absolute w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bottom-[5%] right-[5%] rounded-full bg-gradient-to-br from-blue-400/40 via-purple-500/40 to-indigo-600/40 blur-2xl" style={{ animation: 'particle-bottom-right 5s linear infinite' }} />
                     </div>
                 </div>
 
