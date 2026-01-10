@@ -172,7 +172,7 @@ export const Desktop = () => {
       </section>
 
       <section className="w-full relative mt-9 mb-0 pb-0">
-        <div className="w-full min-h-[1800px] sm:min-h-[2000px] md:min-h-[2200px] lg:min-h-[2300px] h-auto relative">
+        <div className="w-full min-h-[1660px] sm:min-h-[2000px] md:min-h-[2200px] lg:min-h-[2100px] h-auto relative">
           <div className="absolute top-[1100px] left-0 w-full h-[1136px] flex rotate-180">
             <div className="w-full h-[1136.17px] relative bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(9,15,37,1)_100%)]">
               {/* 4 Corner particles - rotated section */}
@@ -333,25 +333,6 @@ export const Desktop = () => {
           </Card>
 
           <div className="flex flex-col w-full max-w-[650px] items-center gap-8 sm:gap-12 md:gap-16 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:1200ms]">
-            <div className="flex flex-col w-full items-center gap-3 sm:gap-[14px]">
-              <h3 className="flex items-center justify-center [font-family:'Cinzel',Helvetica] font-bold text-[#a0bbff] text-lg sm:text-xl md:text-2xl text-center tracking-[0.06em] sm:tracking-[0.08em] md:tracking-[0.96px] leading-[normal] px-4">
-                Or Just Stay Updated
-              </h3>
-
-              <div className="flex w-full gap-3 sm:gap-4 md:gap-6 flex-wrap justify-center px-4">
-                <Input
-                  placeholder="Phone Number"
-                  className="flex-1 min-w-[200px] sm:min-w-[250px] md:min-w-[300px] h-14 sm:h-16 md:h-[78px] px-4 sm:px-6 md:px-[30px] py-3 sm:py-4 md:py-[25px] bg-black rounded-[59px] border-2 border-solid border-[#5174f5] [font-family:'Inter',Helvetica] font-normal text-white text-sm sm:text-base md:text-lg tracking-[0.04em] sm:tracking-[0.06em] md:tracking-[0.80px] leading-[normal] placeholder:text-[#b2b2b2]"
-                />
-
-                <Button className="flex h-auto items-center justify-center gap-2 sm:gap-[13px] px-6 sm:px-8 md:px-[45px] py-3 sm:py-4 md:py-[25px] rounded-[53px] bg-[linear-gradient(90deg,rgba(73,121,245,1)_0%,rgba(83,70,228,1)_100%)] hover:opacity-90 active:opacity-60 transition-opacity">
-                  <span className="[font-family:'Inter',Helvetica] font-black text-white text-base sm:text-lg md:text-xl text-center tracking-[0.04em] sm:tracking-[0.06em] md:tracking-[0.96px] leading-[normal]">
-                    Subscribe
-                  </span>
-                </Button>
-              </div>
-            </div>
-
             <div className="flex flex-col w-full items-center justify-center gap-4 sm:gap-6">
               <h4 className="flex items-center justify-center [font-family:'Cinzel',Helvetica] font-bold text-[#d1d1d1] text-lg sm:text-xl md:text-2xl text-center tracking-[0.06em] sm:tracking-[0.08em] md:tracking-[0.96px] leading-[normal] px-4">
                 Follow The Midnight Magic
