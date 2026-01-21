@@ -1,20 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Events from "./pages/Events";
+import Events from "./pages/Events/Events";
+import Profile from "./pages/Profile/Profile";
 import { Desktop } from "./screens/Desktop";
 import React from "react";
 import SEO from "./SEO";
 
 function App() {
   return (
-    <div className="main-page">
+    <>
       <SEO />    
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Desktop />} />
-          {/* <Route path="/events" element={<Events />} /> */}
+          {/* <Route path="/events" element={<Events />} />
+          <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
