@@ -1,0 +1,61 @@
+/* HERO – deep night */
+.bg-hero {
+  background: linear-gradient(
+    180deg,
+    #000120 0%,
+    #12043a 100%
+  );
+}
+/* HERO – deep night */
+.bg-nav {
+  background: #000120 ;
+}
+
+/* ABOUT US – night → violet */
+.bg-about {
+  background: linear-gradient(
+    180deg,
+    #12043a 0%,
+    #311c7b 120%,
+    #7f56d3 100%
+
+  );
+}
+
+/* STATS – violet plateau */
+.bg-stats {
+  background: linear-gradient(
+    180deg,
+    #311c7b 0%,
+    #7f56d3 100%
+  );
+}
+
+/* MIDNIGHT CARNIVAL – purple → warm */
+.bg-midnight {
+  background: linear-gradient(
+    180deg,
+    #7f56d3 0%,
+    #ffcd7a 100%
+  );
+}
+
+/* PRAKRITI – warm light */
+.bg-prakriti {
+  background: linear-gradient(
+    180deg,
+    #ffcd7a 0%,
+    #fff4dc 100%
+  );
+}
+
+/* MASCOT / FOOTER – light */
+.bg-mascot {
+  background: linear-gradient(
+    180deg,
+    #fff4dc 0%,
+    #ffffff 100%
+  );
+}
+
+
