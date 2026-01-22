@@ -12,7 +12,7 @@ function App() {
       <SEO />    
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Desktop />} /> */}
+          <Route path="/" element={<Desktop />} />
           {/* <Route path="/landing" element={<Home />} />
           <Route path="/events" element={<Events />}  />
           <Route path="/profile" element={<Profile />} /> */}
