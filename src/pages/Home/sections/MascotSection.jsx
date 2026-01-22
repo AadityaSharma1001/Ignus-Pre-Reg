@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import mascot_video from "../assets/video_mascot.mp4";
+
 export default function MascotSection() {
   const videoRef = useRef(null);
   const sectionRef = useRef(null);
@@ -39,8 +40,8 @@ export default function MascotSection() {
           left-1/2
           -translate-x-1/2
           -translate-y-1/2
-          w-[600px]
-          h-[600px]
+          w-[800px]
+          h-[800px]
           rounded-full
           bg-white
           opacity-40
@@ -51,26 +52,26 @@ export default function MascotSection() {
 
       <div className="relative w-full max-w-6xl px-4 flex flex-col items-center text-center">
 
-        {/* Mascot Video */}
+        {/* Mascot Video - Made bigger */}
         <video
           ref={videoRef}
           src={mascot_video}
           muted
           playsInline
-          className="w-80 sm:w-96 md:w-[500px] h-auto"
+          loop
+          className="w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl h-auto"
         />
 
         {/* Tagline */}
-        <p className="mt-6 text-sm italic font-bold font-rosiana text-[#370068]">
-          “Step In. Stay Awake. The Carnival Has Begun.”
+        <p className="mt-6 text-lg md:text-xl italic font-bold font-rosiana text-[#370068]">
+          "Step In. Stay Awake. The Carnival Has Begun."
         </p>
 
         {/* Register Button */}
-        <Link to="/auth" className="mt-4 px-8 py-2 rounded-full bg-black text-[#FFD966]">
+        <Link to="/login" className="mt-6 px-10 py-3 rounded-full bg-black text-[#FFD966] font-rosiana text-lg hover:bg-[#FFD966] hover:text-black transition-colors">
           Register
         </Link>
 
-        
       </div>
     </section>
   );

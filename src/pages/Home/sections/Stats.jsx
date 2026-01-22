@@ -7,8 +7,8 @@ import icon_corporate from "../assets/icon_corporate.svg";
 import icon_events from "../assets/icon_events.svg";
 export default function Stats() {
   return (
-    <section className="w-full py-12 flex justify-center">
-      <div className="grid grid-cols-3 gap-y-10 gap-x-8 max-w-5xl px-6">
+    <section className="w-full py-6 flex justify-center">
+      <div className="grid grid-cols-3 gap-y-10 gap-x-10 md:gap-x-14 lg:gap-x-20 max-w-5xl px-6">
 
         <Stat value="200+" label="COLLEGES" img={icon_college}/>
         <Stat value="200k+" label="EYEBALLS" img={icon_eyeball}/>
@@ -25,21 +25,21 @@ export default function Stats() {
 
 function Stat({ value, label,img }) {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-4">
 
-      {/* Icon */}
+      {/* Icon - Bigger */}
       <img
         src={img}
         alt=""
-        className="w-6 h-6"
+        className="w-8 h-8 md:w-10 md:h-10"
       />
 
-      {/* Text */}
+      {/* Text - Bigger */}
       <div className="flex flex-col text-[#DAB8FF]">
-        <span className="text-lg font-bold font-white">
+        <span className="text-xl md:text-2xl lg:text-3xl font-bold font-redrose">
           {value}
         </span>
-        <span className="text-xs tracking-wide">
+        <span className="text-sm md:text-base tracking-wide font-raleway uppercase">
           {label}
         </span>
       </div>

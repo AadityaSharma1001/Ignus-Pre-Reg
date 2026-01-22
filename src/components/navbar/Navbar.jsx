@@ -19,44 +19,46 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-transparent">
-      <nav className="relative mx-auto max-w-7xl px-4">
-        <div className="flex h-16 items-center justify-between">
+    <header className="absolute top-0 left-0 w-full z-50 bg-transparent">
+      <nav className="relative mx-auto max-w-7xl px-6 py-4">
+        <div className="flex items-center justify-between">
 
-          {/* Logo */}
-          <div className="flex items-center gap-2">
+          {/* Logo with glow */}
+          <div className="flex items-center gap-2 relative">
+            <div className="absolute inset-0 bg-white/30 blur-xl rounded-full scale-150" />
             <img
               src={logo}
               alt="Ignus"
-              className="h-8 w-auto"
+              className="h-12 md:h-14 w-auto relative z-10"
             />
           </div>
 
-          {/* Desktop Links */}
-          <ul className="hidden lg:flex gap-8 text-sm text-white list-none items-center">
+          {/* Desktop Links - Centered */}
+          <ul className="hidden lg:flex gap-10 text-white list-none items-center absolute left-1/2 transform -translate-x-1/2">
             {navLinks.map((link) => (
               <li key={link.label}
               className="text-[#FCFCFC] cursor-pointer transition-opacity hover:opacity-80"
               >
                 <a
                   href={link.href}
-                  className="hover:text-purple-300 transition-colors"
+                  className="hover:text-purple-300 transition-colors font-rosiana text-base md:text-lg tracking-wide"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
-            {/* Profile Icon */}
-            <li className="text-[#FCFCFC] cursor-pointer transition-opacity hover:opacity-80">
-              <Link to="/profile">
-                <img
-                  src={profile}
-                  alt="Profile"
-                  className="h-6 w-6"
-                />
-              </Link>
-            </li>
           </ul>
+
+          {/* Profile Icon */}
+          <div className="hidden lg:flex items-center">
+            <Link to="/profile" className="text-[#FCFCFC] cursor-pointer transition-opacity hover:opacity-80">
+              <img
+                src={profile}
+                alt="Profile"
+                className="h-8 w-8"
+              />
+            </Link>
+          </div>
 
           {/* Hamburger */}
           <button
@@ -65,22 +67,22 @@ export default function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={open}
           >
-            <span className="block w-6 h-0.5 bg-white mb-1" />
-            <span className="block w-6 h-0.5 bg-white mb-1" />
-            <span className="block w-6 h-0.5 bg-white" />
+            <span className="block w-7 h-0.5 bg-white mb-1.5" />
+            <span className="block w-7 h-0.5 bg-white mb-1.5" />
+            <span className="block w-7 h-0.5 bg-white" />
           </button>
         </div>
 
         {/* Mobile Dropdown */}
         {open && (
-            <div className="lg:hidden absolute top-full left-0 w-full bg-gray-200">
-                <ul className="flex flex-col gap-4 px-4 py-4 text-black list-none">
+            <div className="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-sm">
+                <ul className="flex flex-col gap-4 px-6 py-6 text-white list-none">
                 {navLinks.map((link) => (
                     <li key={link.label}>
                     <a
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className="block py-2"
+                        className="block py-2 font-rosiana text-lg"
                     >
                         {link.label}
                     </a>
@@ -91,12 +93,12 @@ export default function Navbar() {
                   <Link
                     to="/profile"
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-2 py-2"
+                    className="flex items-center gap-2 py-2 font-rosiana text-lg"
                   >
                     <img
                       src={profile}
                       alt="Profile"
-                      className="h-5 w-5"
+                      className="h-6 w-6"
                     />
                     Profile
                   </Link>

@@ -2,12 +2,12 @@ import React from "react";
 import qr1 from "../assets/qr1.svg";
 import qr2 from "../assets/qr2.svg";
 import qr3 from "../assets/qr3.svg";
-export default function contactUs () {
+export default function ContactUs() {
     return (
-        <section>
-            <div className="mt-16 w-full flex flex-col md:flex-row items-center justify-between gap-8">
+        <section className="w-full py-12 px-6">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
 
-            <h2 className="text-2xl font-bold text-[#370068] font-rosiana">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#370068] font-rosiana tracking-wider">
                 CONTACT US
             </h2>
 

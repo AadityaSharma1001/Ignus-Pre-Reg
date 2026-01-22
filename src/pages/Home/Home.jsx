@@ -1,7 +1,6 @@
 import React from "react";
 import AboutUs from "./sections/AboutUs";
 import Hero from "./sections/Hero";
-import Navbar from "../../components/navbar/Navbar";
 import Stats from "./sections/Stats";
 import Footer from "../../components/ui/Footer";
 import InitiativePrakriti from "./sections/InitiativePrakriti";
@@ -12,16 +11,13 @@ import ContactUs from "./sections/ContactUs";
 export default function Home() {
   return (
     <>
-      {/* Fixed Navbar */}
-      <Navbar />
-
       {/* Page Content */}
       <main>
-        {/* First gradient zone: Navbar to MidnightCarnival */}
+        {/* First gradient zone: Hero to MidnightCarnival */}
         <div 
-          className="relative pt-16"
+          className="relative"
           style={{
-            background: 'linear-gradient(to bottom, #000120 10%, #311C7B 86%, #7F56D3 100%)'
+            background: 'linear-gradient(to bottom, #000120 0%, #12043a 20%, #311C7B 60%, #7F56D3 100%)'
           }}
         >
           <Hero />
@@ -34,7 +30,7 @@ export default function Home() {
         <div 
           className="relative"
           style={{
-            background: 'linear-gradient(to bottom, #370068 0%, #FFE0A8 35%, #FFFFFF 48%, #FFFFFF 86%, #FFE0A8 100%)'
+            background: 'linear-gradient(to bottom, #7F56D3 0%, #FFE0A8 25%, #FFFFFF 40%, #FFFFFF 75%, #1E0752 100%)'
           }}
         >
           <InitiativePrakriti />
