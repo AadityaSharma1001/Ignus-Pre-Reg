@@ -1,5 +1,5 @@
 export const navLinks = [
-  { label: "Events", href: "#events" },
+  { label: "Events", href: "/events" },
   { label: "Workshops", href: "#workshops" },
   { label: "Prakriti", href: "#prakriti" },
   { label: "Map", href: "#map" },
