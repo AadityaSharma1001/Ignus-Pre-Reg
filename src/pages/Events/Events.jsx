@@ -284,7 +284,7 @@ function Events() {
 
 
   return (
-    <div>
+    <div className="events-page">
       {/* ================= CULTURAL ================= */}
       <div ref={culturalRef} className="cultural">
         <div className="cultural-bg">

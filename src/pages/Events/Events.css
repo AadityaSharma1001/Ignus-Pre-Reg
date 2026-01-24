@@ -3,6 +3,16 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: black; /* Fix for white bars */
+}
+
+.events-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
 }
 
 
@@ -442,21 +452,20 @@ div.online {
   padding-bottom: 30px;
 }
 
-/* =============== EVENT FOOTER TABS =============== */
-
 .events-footer {
   position: fixed;
-  bottom: 35px;
+  bottom: 24px;
+  /* anchor to bottom, NOT top */
   left: 50%;
-  top: 87%;
   transform: translateX(-50%);
   display: flex;
-  gap: 50px;
+  gap: 40px;
+  padding: 10px 32px;
+  z-index: 9999;
+
   background: transparent;
   backdrop-filter: none;
-  padding: 10px 40px;
   border-radius: 0;
-  z-index: 9999;
 }
 
 /* ---------- Base Button ---------- */
@@ -558,25 +567,6 @@ div.online {
   color: #444;
 }
 
-/* ---------- MOBILE STACK ---------- */
-@media (max-width: 768px) {
-  .modal-content {
-    flex-direction: column;
-  }
-
-  .modal-left,
-  .modal-right {
-    width: 100%;
-  }
-
-  .modal-left {
-    height: 220px;
-  }
-
-  .modal-right {
-    text-align: center;
-  }
-}
 
 .event-modal-overlay {
   position: fixed;
@@ -773,329 +763,418 @@ div.online {
 }
 
 /* ================================================= */
-/* =============== RESPONSIVE DESIGN =============== */
+/* ================= MEDIA QUERIES ================= */
 /* ================================================= */
 
-/* ---------- TABLET (Medium Devices: 768px - 1024px) ---------- */
-@media (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  /* Tablet Layout (iPad / iPad Pro) - Hybrid Flow */
 
-  .cult-heading,
-  .informal-heading,
-  .pronite-heading,
-  .flagship-heading,
-  .online-heading {
-    font-size: 6vw;
-  }
-
-  .cult-subheading,
-  .informal-subheading,
-  .pronite-subheading,
-  .flagship-subheading,
-  .online-subheading {
-    font-size: 3.5vw;
-  }
-
-  .cult-image {
-    width: 40vw;
-  }
-
-  .informal-mask img,
-  .flagship-mask img,
-  .online-mask img {
-    width: 40vw;
-  }
-
-  .cult-events,
-  .informal-events,
-  .flagship-events,
-  .online-events {
-    width: 50vw;
-    gap: 1.5rem 1.8rem;
-  }
-
-  .event-item {
-    font-size: 2vw;
-    height: 4.5vw;
-    padding: 0 2.5vw;
-  }
-
-  /* Footer tabs for tablet - hide if all don't fit */
-  .events-footer {
-    gap: 20px;
-    padding: 10px 20px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    justify-content: flex-start;
-    left: 0;
-    right: 0;
-    transform: none;
-  }
-
-  .events-footer::-webkit-scrollbar {
-    display: none;
-  }
-
-  .footer-btn {
-    min-width: 150px;
-    height: 56px;
-    padding: 0 24px;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-}
-
-/* ---------- MOBILE (Small Devices: up to 767px) ---------- */
-@media (max-width: 767px) {
-
-  /* Hide bottom tabs on mobile */
-  .events-footer {
-    display: none;
-  }
-
-  /* Hide masks/decorative images on mobile */
-  .cult,
-  .informal-mask,
-  .flagship-mask,
-  .online-mask,
-  .left-decoration,
-  .right-decoration {
-    display: none;
-  }
-
-  /* ========================================= */
-  /* ========== FLEXBOX LAYOUT FIX =========== */
-  /* ========================================= */
-
-  /* 0. CRITICAL FIX: Make background containers truly background layers */
-  .cultural-bg,
-  .informal-bg,
-  .pronite-bg,
-  .flagship-bg,
-  .online-bg {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible !important;
-    z-index: 0;
-    display: block !important;
-    pointer-events: none;
-  }
-
-  .cultural-bg img,
-  .informal-bg img,
-  .pronite-bg img,
-  .flagship-bg img,
-  .online-bg img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
-
-  /* 1. Make main containers flex columns */
-  div.cultural,
-  div.informal,
-  div.pronite,
-  div.flagship,
-  div.online {
+  /* --- Global & Layout --- */
+  /* CRITICAL: Exclude modal overlay from section flow styles */
+  .events-page > div:not(.event-modal-overlay) {
+    height: auto !important;
+    min-height: 100vh;
+    padding-bottom: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    height: auto;
-    padding-top: 100px;
-    padding-bottom: 80px;
     position: relative;
-    overflow: visible !important;
+    background: black;
   }
 
-  /* 2. Reset absolute positioning for wrappers (Headings) */
+  /* Backgrounds - FORCE STRETCH */
+  .cultural-bg, .informal-bg, .pronite-bg, .flagship-bg, .online-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .cultural-image, .informal-bg img, .pronite-bg img, .flagship-bg img, .online-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Cultural Specific Fix */
+  .cultural-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .cultural-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* --- Wrappers --- */
+  .cult-wrapper, .informal-wrapper, .pronite-wrapper, .flagship-wrapper, .online-wrapper {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 90%;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    z-index: 10;
+  }
+
+  /* --- Grids (2 Columns) --- */
+  .cult-events, .informal-events, .pronite-events, .flagship-events, .online-events {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 0 auto 80px auto;
+    z-index: 10;
+  }
+
+  /* Flagship: 2 Columns */
+  .flagship-events {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* --- Masks --- */
+  .cult, .informal-mask, .flagship-mask, .online-mask {
+    position: absolute;
+    top: 30px;
+    opacity: 0.6;
+    z-index: 5;
+    pointer-events: none;
+  }
+  .cult { right: -5%; }
+  .informal-mask { left: -5%; }
+  .flagship-mask { left: -5%; }
+  .online-mask { right: -5%; }
+
+  /* --- Typography --- */
+  .cult-heading, .informal-heading, .pronite-heading, .flagship-heading, .online-heading {
+    font-size: 8vw;
+  }
+  .cult-subheading, .informal-subheading, .pronite-subheading, .flagship-subheading, .online-subheading {
+    font-size: 3.5vw;
+  }
+
+  /* --- Buttons --- */
+  .event-item {
+    font-size: 2vw;
+    height: 6vw;
+    width: 100%;
+    padding: 0 20px;
+    justify-content: center;
+  }
+
+  /* --- Footer --- */
+  .events-footer {
+    display: none !important;
+  }
+
+  /* --- Flagship Buttons Fix --- */
+  .flagship-events .event-item {
+    height: auto;
+    min-height: 60px;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* --- Modal --- */
+  .event-modal-overlay {
+    position: fixed !important; /* Ensure it stays fixed */
+    z-index: 10000 !important;
+    display: flex !important;
+  }
+
+  .event-modal {
+    position: relative;
+    width: 85%;
+    height: auto;
+    max-height: 80%;
+    left: auto;
+    top: auto;
+    padding: 24px;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .modal-left {
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+  }
+
+  .modal-right {
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-right h2 {
+    font-size: 2rem;
+  }
+
+  .modal-right p {
+    font-size: 1.1rem;
+    color: #eee;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  /* ===== FIX FLAGSHIP BUTTONS ===== */
+  .flagship-events {
+    width: 85%;
+    grid-template-columns: 1fr;
+  }
+
+  .flagship-events .event-item {
+    width: 100%;
+    height: 56px;
+    /* readable tap size */
+    font-size: 1rem;
+    /* readable text */
+    padding: 0 16px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  /* ================= HARD RESET: CULTURAL ================= */
+
+  .cultural {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: black;
+    /* prevents white flash */
+  }
+
+  /* Background becomes visual layer, NOT layout driver */
+  .cultural-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .cultural-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Bring content ABOVE background */
+  .cult,
+  .left-decoration,
+  .right-decoration,
+  .cult-wrapper,
+  .cult-events {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== CONTENT FLOW FIX ===== */
+
+  .cult-wrapper {
+    margin-top: -580px;
+    margin-bottom: 32px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .cult-events {
+    width: 85%;
+    margin: 0 auto 140px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cult-events .event-item {
+    height: 56px;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+
+  /* ================= GLOBAL ================= */
+
+  .cultural,
+  .informal,
+  .pronite,
+  .flagship,
+  .online {
+    min-height: 100vh;
+    padding: 100px 0 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ================= HEADINGS ================= */
   .cult-wrapper,
   .informal-wrapper,
   .pronite-wrapper,
   .flagship-wrapper,
   .online-wrapper {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-
-    width: 90%;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
     text-align: center;
-    margin: 0 auto 2rem auto !important;
-    z-index: 10;
+    width: 90%;
+    margin-bottom: 30px;
   }
 
-  /* 3. Reset absolute positioning for Event Lists */
+  .cult-heading,
+  .informal-heading,
+  .pronite-heading,
+  .flagship-heading,
+  .online-heading {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .cult-subheading,
+  .informal-subheading,
+  .pronite-subheading,
+  .flagship-subheading,
+  .online-subheading {
+    font-size: clamp(1.1rem, 5vw, 1.6rem);
+  }
+
+  /* ================= EVENTS GRID ================= */
   .cult-events,
   .informal-events,
-  .pronite-events,
   .flagship-events,
   .online-events {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-
-    margin-top: 0;
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    display: grid;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 85%;
     grid-template-columns: 1fr;
-    width: 85%;
-    max-width: 400px;
-    gap: 1.5rem;
-    z-index: 10;
+    gap: 14px;
   }
 
-  /* Specific adjustments for Pronite text */
   .pronite-events {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 85%;
+  }
+
+  /* ================= BUTTONS ================= */
+  .event-item {
+    font-size: 1rem;
+    height: 52px;
+    padding: 0 18px;
+  }
+
+  /* ================= DECORATIONS ================= */
+  .cult,
+  .informal-mask,
+  .flagship-mask,
+  .online-mask {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* ================= FOOTER TABS ================= */
+    /* --- Footer --- */
+  .events-footer {
+    display: none !important; /* FORCE HIDE */
+  }
+
+  /* --- Flagship Buttons Fix --- */
+  .flagship-events .event-item {
+    height: auto;
+    min-height: 60px;
+    padding: 12px 20px;
+    font-size: 1.2rem; /* Fixed readable size */
+    line-height: 1.2;
+    white-space: normal; /* Allow text wrap if needed */
     text-align: center;
   }
 
-  /* SPECIFIC FIX: Override right positioning for informal section */
-  div.informal .informal-wrapper,
-  div.informal .informal-events {
-    position: relative !important;
-    top: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-    margin: 0 auto !important;
-    width: 90% !important;
-    max-width: 400px !important;
-    text-align: center !important;
+  .footer-btn {
+    height: 38px;
+    font-size: 0.75rem;
+    padding: 0 14px;
   }
 
-  /* Headings Typography */
-  .cult-heading,
-  .informal-heading,
-  .pronite-heading,
-  .flagship-heading,
-  .online-heading {
-    font-size: 12vw;
-    letter-spacing: 0.1em;
-    line-height: 1.1;
-  }
-
-  .pronite-heading,
-  .online-heading {
-    margin-left: 0;
-  }
-
-  .cult-subheading,
-  .informal-subheading,
-  .pronite-subheading,
-  .flagship-subheading,
-  .online-subheading {
-    font-size: 5vw;
-    letter-spacing: 0.2em;
-  }
-
-  .cult-subheading-wrapper,
-  .informal-subheading-wrapper,
-  .pronite-subheading-wrapper,
-  .flagship-subheading-wrapper,
-  .online-subheading-wrapper {
-    justify-content: center;
-    margin-top: 0.5rem;
-  }
-
-  .line {
-    width: 15vw;
-  }
-
-  /* Event Buttons */
-  .event-item {
-    font-size: 4.5vw;
-    height: 14vw;
-    padding: 0 4vw;
-    min-height: 60px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Modal adjustments */
+  /* ================= MODAL ================= */
   .event-modal {
-    width: 90%;
+    width: 92%;
+    height: 85%;
+    left: 4%;
+    top: 7%;
+    padding: 18px;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-left {
+    width: 100%;
     height: auto;
-    max-height: 85vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 24px;
-    animation: modalFadeUpMobile 0.35s ease;
+    max-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
   }
 
-  @keyframes modalFadeUpMobile {
-    from {
-      transform: translate(-50%, -40%);
-      opacity: 0;
-    }
-
-    to {
-      transform: translate(-50%, -50%);
-      opacity: 1;
-    }
+  .modal-event-image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
-  .event-modal h2 {
-    font-size: 1.8rem;
+  .modal-right h2 {
+    font-size: 1.3rem;
   }
 
-  .event-modal p {
-    font-size: 1rem;
-  }
-
-  .modal-action-btn {
-    padding: 12px 28px;
-    font-size: 1rem;
+  .modal-right p {
+    font-size: 0.9rem;
   }
 }
 
-/* ---------- SMALL MOBILE (up to 480px) ---------- */
-@media (max-width: 480px) {
 
-  .cult-heading,
-  .informal-heading,
-  .pronite-heading,
-  .flagship-heading,
-  .online-heading {
-    font-size: 11vw;
-  }
 
-  .cult-subheading,
-  .informal-subheading,
-  .pronite-subheading,
-  .flagship-subheading,
-  .online-subheading {
-    font-size: 6vw;
-  }
 
-  .cult-events,
-  .informal-events,
-  .flagship-events,
-  .online-events {
-    width: 85%;
-  }
 
-  .event-item {
-    font-size: 5vw;
-    height: 13vw;
-    min-height: 52px;
-  }
-}
+
+
+
+
