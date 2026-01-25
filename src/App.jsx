@@ -25,8 +25,9 @@ function App() {
           {/* <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/passes" element={<Passes />} />
+          
+          <Route path="/prakriti" element={<Prakrit />} /> */}
           <Route path="/login" element={<Login />} />
-          <Route path="/prakriti" element={<Prakrit />} />
 
           🔐 PROTECTED ROUTE
           <Route
@@ -36,7 +37,7 @@ function App() {
                 <Profile />
               </ProtectedRoute>
             }
-          /> */}
+          />
 
           {/* Fallback */}
           {/* <Route path="*" element={<Home />} /> */}

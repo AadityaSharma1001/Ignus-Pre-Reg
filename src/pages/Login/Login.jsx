@@ -21,12 +21,12 @@ export default function Auth() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const getCookie = (name) => {
-    return document.cookie
-      .split("; ")
-      .find((row) => row.startsWith(name + "="))
-      ?.split("=")[1];
-  };
+  // const getCookie = (name) => {
+  //   return document.cookie
+  //     .split("; ")
+  //     .find((row) => row.startsWith(name + "="))
+  //     ?.split("=")[1];
+  // };
 
   // Form states
   const [loginData, setLoginData] = useState({
@@ -167,13 +167,13 @@ export default function Auth() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!isLoginValid()) return;
+
     try {
       const res = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/accounts/login/`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          credentials: "include",
           body: JSON.stringify({
             username: loginData.email,
             password: loginData.password,
@@ -186,8 +186,14 @@ export default function Auth() {
         return;
       }
 
-      const isProfileComplete = getCookie("isProfileComplete");
-      if (isProfileComplete === "false") {
+      const data = await res.json();
+
+      // 🔥 STORE JWT
+      localStorage.setItem("access", data.access);
+      localStorage.setItem("refresh", data.refresh);
+
+      // Decide where to go
+      if (data.profile_complete === false) {
         transitionTo("complete-profile");
       } else {
         navigate("/profile");
@@ -231,7 +237,10 @@ export default function Auth() {
         toast.error("Signup failed");
         return;
       }
+      const data = await res.json();
 
+      localStorage.setItem("access", data.access);
+      localStorage.setItem("refresh", data.refresh);
       transitionTo("complete-profile");
     } catch {
       toast.error("Signup failed");
@@ -264,11 +273,15 @@ export default function Auth() {
         formData.append("clg_id", profileData.collegeId);
       }
 
+      const token = localStorage.getItem("access");
+
       const res = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/accounts/user-profile/`,
         {
           method: "POST",
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           body: formData,
         },
       );
