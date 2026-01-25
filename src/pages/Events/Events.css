@@ -110,7 +110,7 @@ div.cultural {
 
 .cult-events {
   position: absolute;
-  top: 45%;
+  top: 44%;
   left: 12%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1167,6 +1167,50 @@ div.online {
 
   .modal-right p {
     font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  /* ================= CULTURAL MOBILE CLEANUP ================= */
+
+  /* 1️⃣ REMOVE DECORATIVE BANNERS */
+  .cultural .cult,
+  .cultural .left-decoration,
+  .cultural .right-decoration {
+    display: none !important;
+  }
+
+  /* 2️⃣ SAFE SPACING BELOW NAVBAR */
+  .cultural {
+    padding-top: 700px;     /* navbar offset */
+    padding-bottom: 140px;
+    min-height: 100vh;
+  }
+
+  /* 3️⃣ HEADING BLOCK */
+  .cult-wrapper {
+    position: relative;
+    z-index: 5;
+    margin: 0 auto 120px;   /* spacing controlled by margin */
+    width: 90%;
+    text-align: center;
+    top:11%;
+  }
+
+  /* 4️⃣ EVENTS LIST */
+  .cult-events {
+    width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cult-events .event-item {
+    height: 54px;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
   }
 }
 
