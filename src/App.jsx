@@ -7,6 +7,7 @@ import Profile from "./pages/Profile/Profile";
 import Passes from "./pages/Passes/Passes";
 import Login from "./pages/Login/Login";
 import Prakrit from "./pages/Prakriti/Prakrit";
+import { Desktop }  from "./screens/Desktop/Desktop";
 
 import Navbar from "./components/navbar/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -17,16 +18,17 @@ function App() {
     <>
       <SEO />
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Desktop />} />
+          {/* <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/passes" element={<Passes />} />
           <Route path="/login" element={<Login />} />
           <Route path="/prakriti" element={<Prakrit />} />
 
-          {/* 🔐 PROTECTED ROUTE */}
+          🔐 PROTECTED ROUTE
           <Route
             path="/profile"
             element={
@@ -34,10 +36,10 @@ function App() {
                 <Profile />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
           {/* Fallback */}
-          <Route path="*" element={<Home />} />
+          {/* <Route path="*" element={<Home />} /> */}
         </Routes>
       </BrowserRouter>
     </>
