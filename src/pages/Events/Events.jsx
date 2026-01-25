@@ -492,6 +492,18 @@ function Events() {
                 <h2>{eventData.name}</h2>
                 <p><strong>Venue:</strong> {eventData.venue}</p>
                 <p><strong>Date:</strong> {eventData.date}</p>
+
+                {selectedEvent.category === "FLAGSHIP" && (
+                  <button
+                    className="modal-register-btn"
+                    onClick={() => {
+                      // later you can connect this to a form / page
+                      alert(`Registering for ${eventData.name}`);
+                    }}
+                  >
+                    REGISTER
+                  </button>
+                )}
               </div>
             </div>
           ) : (
