@@ -1,14 +1,24 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { navLinks } from "./navLinks";
 import logo from "../../assets/logo.svg";
 import profile from "../../assets/profile.svg";
 
+/* -------- Helper to read cookie -------- */
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+  return null;
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  // Close mobile menu when resizing to desktop
+  // ✅ login state from cookie
+  const isLoggedIn = getCookie("LoggedIn") === "true";
+
+  // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -24,26 +34,25 @@ export default function Navbar() {
       <nav className="w-full px-6 py-2 bg-gradient-to-b from-black/80 via-black/50 to-transparent backdrop-blur-sm shadow-lg shadow-black/20">
         <div className="max-w-7xl mx-auto flex items-center justify-between relative">
 
-          {/* Logo with glow */}
+          {/* Logo */}
           <div className="flex items-center gap-2 relative">
             <div className="absolute inset-0 bg-white/30 blur-xl rounded-full scale-150" />
-            <img
-              src={logo}
-              alt="Ignus"
-              className="h-12 md:h-14 w-auto relative z-10"
-            />
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Ignus"
+                className="h-12 md:h-14 w-auto relative z-10"
+              />
+            </Link>
           </div>
 
-          {/* Desktop Links - Centered */}
-          <ul className="hidden lg:flex gap-10 text-white list-none items-center absolute left-1/2 transform -translate-x-1/2">
+          {/* Desktop Links (Centered) */}
+          <ul className="hidden lg:flex gap-10 text-white items-center absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => (
-              <li 
-                key={link.label}
-                className="text-[#FCFCFC] cursor-pointer transition-opacity hover:opacity-80"
-              >
+              <li key={link.label}>
                 <a
                   href={link.href}
-                  className="hover:text-purple-300 transition-colors font-rosiana text-base md:text-lg tracking-wide"
+                  className="font-rosiana text-base md:text-lg tracking-wide hover:text-purple-300 transition-colors"
                 >
                   {link.label}
                 </a>
@@ -51,15 +60,27 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Profile Icon */}
+          {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center">
-            <Link to="/profile" className="text-[#FCFCFC] cursor-pointer transition-opacity hover:opacity-80">
-              <img
-                src={profile}
-                alt="Profile"
-                className="h-8 w-8"
-              />
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                to="/profile"
+                className="transition-opacity hover:opacity-80"
+              >
+                <img
+                  src={profile}
+                  alt="Profile"
+                  className="h-8 w-8"
+                />
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="px-4 py-2 rounded-full bg-purple-600 text-white font-medium hover:bg-purple-700 transition"
+              >
+                Login / Register
+              </Link>
+            )}
           </div>
 
           {/* Hamburger */}
@@ -75,10 +96,10 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Menu */}
         {open && (
           <div className="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-sm">
-            <ul className="flex flex-col gap-4 px-6 py-6 text-white list-none">
+            <ul className="flex flex-col gap-4 px-6 py-6 text-white">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <a
@@ -90,20 +111,31 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
-              {/* Profile Link in Mobile */}
+
+              {/* Mobile Auth Section */}
               <li>
-                <Link
-                  to="/profile"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 py-2 font-rosiana text-lg"
-                >
-                  <img
-                    src={profile}
-                    alt="Profile"
-                    className="h-6 w-6"
-                  />
-                  Profile
-                </Link>
+                {isLoggedIn ? (
+                  <Link
+                    to="/profile"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 py-2 font-rosiana text-lg"
+                  >
+                    <img
+                      src={profile}
+                      alt="Profile"
+                      className="h-6 w-6"
+                    />
+                    Profile
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={() => setOpen(false)}
+                    className="py-2 font-rosiana text-lg text-purple-300"
+                  >
+                    Login / Register
+                  </Link>
+                )}
               </li>
             </ul>
           </div>

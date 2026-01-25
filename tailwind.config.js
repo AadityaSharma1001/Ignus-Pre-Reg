@@ -10,6 +10,8 @@ export default {
         caudex: ['Caudex', 'serif'],
         redrose: ['Red Rose', 'sans-serif'],
         raleway: ['Raleway', 'sans-serif'],
+        relington: ['Relington', 'sans-serif'], 
+        montserrat: ['Montserrat', 'sans-serif']
       },
       animation: {
         'twinkle': 'twinkle 3s ease-in-out infinite',
