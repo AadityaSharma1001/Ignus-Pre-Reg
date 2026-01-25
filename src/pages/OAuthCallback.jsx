@@ -5,28 +5,33 @@ export default function OAuthCallback() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+  if (localStorage.getItem("oauth_done")) return;
 
-    const access = params.get("access");
-    const refresh = params.get("refresh");
-    const profileComplete = params.get("profile_complete") === "true";
+  localStorage.setItem("oauth_done", "true");
 
-    if (!access || !refresh) {
-      navigate("/login");
-      return;
-    }
+  const params = new URLSearchParams(window.location.search);
 
-    localStorage.setItem("access", access);
-    localStorage.setItem("refresh", refresh);
-    localStorage.setItem("isProfileComplete", String(profileComplete));
-    localStorage.setItem("isGoogle", "true");
+  const access = params.get("access");
+  const refresh = params.get("refresh");
+  const profileComplete = params.get("profile_complete") === "true";
 
-    if (profileComplete) {
-      navigate("/profile");
-    } else {
-      navigate("/login?completeProfile=true");
-    }
-  }, []);
+  if (!access || !refresh) {
+    navigate("/login", { replace: true });
+    return;
+  }
+
+  localStorage.setItem("access", access);
+  localStorage.setItem("refresh", refresh);
+  localStorage.setItem("isProfileComplete", String(profileComplete));
+  localStorage.setItem("isGoogle", "true");
+
+  navigate(
+    profileComplete ? "/profile" : "/login?completeProfile=true",
+    { replace: true }
+  );
+}, [navigate]);
+localStorage.removeItem("oauth_done");
+
 
   return <div>Signing you in…</div>;
 }
