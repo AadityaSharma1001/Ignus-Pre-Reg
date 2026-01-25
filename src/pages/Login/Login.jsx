@@ -52,6 +52,57 @@ export default function Auth() {
     collegeId: null,
     referralCode: null,
   });
+  const isLoginValid = () => {
+    if (!loginData.email.trim() || !loginData.password.trim()) {
+      toast.error("Email and password are required");
+      return false;
+    }
+    return true;
+  };
+
+  const isSignupValid = () => {
+    if (
+      !signupData.firstName.trim() ||
+      !signupData.lastName.trim() ||
+      !signupData.email.trim() ||
+      !signupData.password ||
+      !signupData.confirmPassword
+    ) {
+      toast.error("All fields are required");
+      return false;
+    }
+
+    if (signupData.password !== signupData.confirmPassword) {
+      toast.error("Passwords do not match");
+      return false;
+    }
+
+    return true;
+  };
+
+  const isProfileValid = () => {
+    if (!profileData.phone || profileData.phone.length !== 10) {
+      toast.error("Enter valid 10-digit phone number");
+      return false;
+    }
+    if (!profileData.college.trim()) {
+      toast.error("College name is required");
+      return false;
+    }
+    if (!profileData.state) {
+      toast.error("Please select your state");
+      return false;
+    }
+    if (!profileData.govId) {
+      toast.error("Government ID is required");
+      return false;
+    }
+    if (!profileData.collegeId) {
+      toast.error("College ID is required");
+      return false;
+    }
+    return true;
+  };
 
   const GENDER_OPTIONS = [
     { value: "M", label: "Male" },
@@ -113,8 +164,9 @@ export default function Auth() {
   };
 
   // Form handlers
-   const handleLogin = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    if (!isLoginValid()) return;
     try {
       const res = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/accounts/login/`,
@@ -126,7 +178,7 @@ export default function Auth() {
             username: loginData.email,
             password: loginData.password,
           }),
-        }
+        },
       );
 
       if (!res.ok) {
@@ -147,6 +199,7 @@ export default function Auth() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (!isSignupValid()) return;
     if (signupData.password !== signupData.confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -164,7 +217,7 @@ export default function Auth() {
             email: signupData.email,
             password: signupData.password,
           }),
-        }
+        },
       );
 
       if (res.status === 409) {
@@ -187,6 +240,7 @@ export default function Auth() {
 
   const handleCompleteProfile = (e) => {
     e.preventDefault();
+    if (!isProfileValid()) return;
     // Show confirmation modal instead of directly navigating
     setShowModal(true);
   };
