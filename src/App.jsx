@@ -38,6 +38,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/oauth/callback" element={<OAuthCallback />} />
 
           {/* Fallback */}
           {/* <Route path="*" element={<Home />} /> */}
