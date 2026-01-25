@@ -16,7 +16,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   // ✅ login state from cookie
-  const isLoggedIn = getCookie("LoggedIn") === "true";
+  const isLoggedIn = !!localStorage.getItem("access") || getCookie("LoggedIn") === "true";
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
