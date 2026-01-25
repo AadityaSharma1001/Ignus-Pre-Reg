@@ -12,6 +12,7 @@ import { Desktop }  from "./screens/Desktop/Desktop";
 import Navbar from "./components/navbar/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OAuthCallback from "./pages/OAuthCallback";
+import CA from "./pages/CA/CA";
 import SEO from "./SEO";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           
           <Route path="/prakriti" element={<Prakrit />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/ca" element={<CA />} />
 
           🔐 PROTECTED ROUTE
           <Route
