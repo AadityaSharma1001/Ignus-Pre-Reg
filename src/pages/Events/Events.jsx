@@ -51,6 +51,19 @@ function Events() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const isModalReady =
+  modalCategory === "INFORMAL"
+    ? !!selectedCategoryImage
+    : modalEvents.length > 0 || !!selectedBackendEvent;
+
+  useEffect(() => {
+  if (isModalOpen && !isModalReady) {
+    setIsModalOpen(false);
+  }
+}, [isModalOpen, isModalReady]);
+
+
+
   // ---------- INFORMAL EVENTS DATA ----------
   const CulturalArray = [
     {
@@ -625,7 +638,7 @@ function Events() {
       </div>
 
       {/* ================= MODAL ================= */}
-      {isModalOpen && (
+      {isModalOpen && isModalReady && (
         <div className="event-modal-overlay" onClick={closeModal}>
           <div className="event-modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>
