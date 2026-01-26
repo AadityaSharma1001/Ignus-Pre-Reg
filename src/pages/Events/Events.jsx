@@ -27,6 +27,7 @@ const isLoggedIn = () => {
 function Events() {
   const navigate = useNavigate();
   const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
+  const [modalCategory, setModalCategory] = useState(null);
   const CATEGORY_TYPE_MAP = {
     CULTURAL: "1",
     FLAGSHIP: "4",
@@ -224,10 +225,32 @@ function Events() {
   };
 
   // ---------- MODAL FUNCTIONS ----------
-  function openModal(eventName, category) {
-    setSelectedEvent({ eventName, category });
+ function openModal(eventName, category) {
+  if (category === "INFORMAL") {
+    const informalEvent = InformalsArray.find(
+      (e) => e.name === eventName
+    );
+
+    setSelectedCategoryImage(informalEvent?.image || null);
+
+    // Fake a backend-like object so modal + register work
+    setSelectedBackendEvent({
+      name: informalEvent.name,
+      venue: informalEvent.venue,
+      date: informalEvent.date,
+    });
+
+    setModalCategory("INFORMAL");
     setIsModalOpen(true);
+    return;
   }
+
+  // default behaviour (CULTURAL, FLAGSHIP, etc.)
+  setModalCategory(category);
+  setSelectedEvent({ eventName, category });
+  setIsModalOpen(true);
+}
+
 
   function closeModal() {
     setIsModalOpen(false);
@@ -614,7 +637,7 @@ function Events() {
 
               {/* RIGHT SIDE — CONTENT */}
               <div className="modal-right">
-                {!selectedBackendEvent ? (
+                {modalCategory !== "INFORMAL" && !selectedBackendEvent ? (
                   <>
                     <h2>Select Event</h2>
 
