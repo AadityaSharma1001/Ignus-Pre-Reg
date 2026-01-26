@@ -55,8 +55,8 @@ function Events() {
   const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
   const [modalCategory, setModalCategory] = useState(null);
   const CATEGORY_TYPE_MAP = {
-    CULTURAL: "1",
-    FLAGSHIP: "4",
+    CULTURAL: "Cultural Event",
+    FLAGSHIP: "Flagship Event",
     INFORMAL: null, // handled separately
   };
   // ---------- MODAL STATE ----------
@@ -357,7 +357,7 @@ function Events() {
 
           <div className="cult-events">
             {backendEvents
-              .filter((type) => String(type.event_type) === "1")
+              .filter((type) => type.name === "Cultural Event")
               .map((type) => (
                 <button
                   key={type.id}
@@ -455,7 +455,7 @@ function Events() {
 
         <div className="flagship-events">
           {backendEvents
-            .filter((type) => String(type.event_type) === "4")
+            .filter((type) => type.name === "Flagship Event")
             .map((type) => (
               <button
                 key={type.id}
