@@ -233,23 +233,34 @@ function Events() {
   }
 
   // ---------- EVENT CLICK HANDLER ----------
-  function handleEventClick(categoryName, category) {
+  function handleEventClick(eventName, category) {
+    console.log("🟡 CLICKED:", { eventName, category });
+
     if (category === "PRONITE") return;
 
-    const typeCode = CATEGORY_TYPE_MAP[category];
+    const normalize = (str) => str.replace(/\s+/g, "").toLowerCase();
 
-    let filtered = [];
+    // Find matching event type
+    const matchedType = backendEvents.find((type) => {
+      console.log("🔍 CHECKING TYPE:", type.reference_name);
+      return normalize(type.reference_name) === normalize(eventName);
+    });
 
-    if (typeCode) {
-      filtered = backendEvents.filter((e) => String(e.event_type) === typeCode);
-    }
+    console.log("✅ MATCHED TYPE:", matchedType);
 
-    if (filtered.length === 0) {
+    if (
+      !matchedType ||
+      !matchedType.events ||
+      matchedType.events.length === 0
+    ) {
       toast.info("Events will be announced soon");
       return;
     }
 
-    setModalEvents(filtered);
+    // IMPORTANT: these are the REAL events
+    console.log("🎯 EVENTS TO SHOW IN MODAL:", matchedType.events);
+
+    setModalEvents(matchedType.events);
     setSelectedBackendEvent(null);
     setIsModalOpen(true);
   }
