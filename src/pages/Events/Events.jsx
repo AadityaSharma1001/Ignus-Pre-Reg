@@ -118,6 +118,16 @@ function Events() {
     },
   ];
 
+  const CulturalEventImages = {
+    "Stag Moves": dance,
+    "Anybody can Duet": dance,
+    "Raw War": dance,
+
+    // add more when backend grows
+    // "Solo Classical": someImage,
+  };
+
+
   const FlagshipArray = [
     {
       name: "ANTARANG",
@@ -649,14 +659,15 @@ function Events() {
               {/* LEFT SIDE — IMAGE */}
               <div className="modal-left">
                 {(
-                  selectedBackendEvent?.cover ||
-                  selectedCategoryImage
+                  selectedCategoryImage ||
+                  (selectedBackendEvent && selectedEvent?.category !== "CULTURAL")
                 ) && (
                   <img
                     src={
-                      selectedBackendEvent?.cover
-                        ? selectedBackendEvent.cover
-                        : selectedCategoryImage
+                      selectedBackendEvent && selectedEvent?.category === "CULTURAL"
+                        ? CulturalEventImages[selectedBackendEvent.name] || selectedCategoryImage
+                        : selectedBackendEvent?.cover || selectedCategoryImage
+
                     }
                     alt="Event"
                     className="modal-event-image"
