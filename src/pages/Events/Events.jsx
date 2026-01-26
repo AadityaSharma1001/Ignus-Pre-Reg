@@ -25,6 +25,11 @@ const isLoggedIn = () => {
 
 function Events() {
   const navigate = useNavigate();
+  const CATEGORY_TYPE_MAP = {
+    CULTURAL: "1",
+    FLAGSHIP: "4",
+    INFORMAL: null, // handled separately
+  };
   // ---------- MODAL STATE ----------
   const [backendEvents, setBackendEvents] = useState([]);
   const [modalEvents, setModalEvents] = useState([]);
@@ -228,10 +233,13 @@ function Events() {
   function handleEventClick(categoryName, category) {
     if (category === "PRONITE") return;
 
-    // Filter real events from backend
-    const filtered = backendEvents.filter(
-      (e) => e.category.toUpperCase() === categoryName,
-    );
+    const typeCode = CATEGORY_TYPE_MAP[category];
+
+    let filtered = [];
+
+    if (typeCode) {
+      filtered = backendEvents.filter((e) => String(e.event_type) === typeCode);
+    }
 
     if (filtered.length === 0) {
       toast.info("Events will be announced soon");
