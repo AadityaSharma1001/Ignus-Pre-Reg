@@ -274,13 +274,17 @@ function Events() {
     console.log("✅ MATCHED TYPE:", matchedType);
 
     if (
-      !matchedType ||
-      !matchedType.events ||
-      matchedType.events.length === 0
-    ) {
-      toast.info("Events will be announced soon");
-      return;
-    }
+    !matchedType ||
+    !matchedType.events ||
+    matchedType.events.length === 0
+  ) {
+    toast.info("Events will be announced soon");
+    setIsModalOpen(false);     // 🔑 force-close safety
+    setModalEvents([]);
+    setSelectedBackendEvent(null);
+    return;
+  }
+
 
     // IMPORTANT: these are the REAL events
     console.log("🎯 EVENTS TO SHOW IN MODAL:", matchedType.events);
@@ -631,17 +635,21 @@ function Events() {
             <div className="modal-content">
               {/* LEFT SIDE — IMAGE */}
               <div className="modal-left">
-                <img
-                  src={
-                    selectedBackendEvent?.cover
-                      ? selectedBackendEvent.cover        // specific event image
-                      : selectedCategoryImage             // dance category image
-                  }
-                  alt="Event"
-                  className="modal-event-image"
-                />
+                {(
+                  selectedBackendEvent?.cover ||
+                  selectedCategoryImage
+                ) && (
+                  <img
+                    src={
+                      selectedBackendEvent?.cover
+                        ? selectedBackendEvent.cover
+                        : selectedCategoryImage
+                    }
+                    alt="Event"
+                    className="modal-event-image"
+                  />
+                )}
               </div>
-
               {/* RIGHT SIDE — CONTENT */}
               <div className="modal-right">
                 {modalCategory !== "INFORMAL" && !selectedBackendEvent ? (
