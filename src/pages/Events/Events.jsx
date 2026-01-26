@@ -23,6 +23,9 @@ import dj from "./images/dj.jpg";
 import artees from "./images/artees.jpg";
 import pun from "./images/pun.jpg";
 import stew from "./images/stew.jpg";
+import ignus from "./images/ignus.jpeg";
+import dub from "./images/dub.png";
+import cos from "./images/cos.jpeg";
 import "./Events.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -95,17 +98,17 @@ const EVENT_IMAGE_MAP = {
   BOLLYWOODQUIZ: "https://thebges.edu.in/wp-content/uploads/2024/04/Intra-college-Quiz-competition-organized-by-RICE-Education-2.jpg",
 
   // Film Events
-  "IGNUS.JPG": "https://media-hosting.imagekit.io//302f4d57f5124512/Untitled%20design%20(54).webp?Expires=1831194176&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=oD-IuJcekQ2SgmgB8Z0pN8ZZ1a5eaBBlnRtXsHPk7Oiujy~zL3kK2-97rBHWRASW2iwvJrTkZbrwA2S~asqndcoPwffFu~IX1DhYYA-xmDi3B7tRS9HFt0kuXxfzq8UFeEGkgARC5kZ2If6NlKv2tK6hl2Ng8oMFRbCg~s73mGXbXvnnGMFTeVzLokVVRKNXIEbV~vCwRrXmL~QFFSZ7zu7hAMyHzOkaGCDrC8TqrDcnlTdhAy0xM0FEQZHcNUzSfPOgOtn2f68GKO~rMJ1~C0jkdfVYXo0eOZ1PHuIO1bMkLMM02l4M3HqwbPh6eoQVsWyu2jZohRiInrzdnFES0Q__",
-  IGNIGY: "https://media-hosting.imagekit.io//a81e7bdef93f47f1/Untitled%20design%20(55).webp?Expires=1831194205&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Xzy3ZKgowsX5Jd7uU5c4Zqm1rYHV-YZwlIF9bHEG-9HsDk0WrooBBYIudAHLVMcxNMEz0MMXu1PYce1cbjlUkAbvwifj29uZl85E0eKFriV96X3dHJWqaGEbmwN7ue2hvp6410-B3Qyy6QWWtm3Gp2LG26VGdbV~KH4sO84nSpXpsxD4-vo3PmvIfrrq-gHC2RwdO7BQE0mlQdXEfMvmalGKYoQKDJi5F5iB9BQKK2Hl5CPBLe08ZZvuqxE7A6RqR2mVnOMxcwpXurIlCq7WCTmMbYzKKGk00AS8oCcGdJ8TIWcddfxF5oU7mDmZPjke7Ln446M2sWcLK~iUvPV1xw__",
-  SHORTMOVIEMAKING: "https://media-hosting.imagekit.io//a81e7bdef93f47f1/Untitled%20design%20(55).webp?Expires=1831194205&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Xzy3ZKgowsX5Jd7uU5c4Zqm1rYHV-YZwlIF9bHEG-9HsDk0WrooBBYIudAHLVMcxNMEz0MMXu1PYce1cbjlUkAbvwifj29uZl85E0eKFriV96X3dHJWqaGEbmwN7ue2hvp6410-B3Qyy6QWWtm3Gp2LG26VGdbV~KH4sO84nSpXpsxD4-vo3PmvIfrrq-gHC2RwdO7BQE0mlQdXEfMvmalGKYoQKDJi5F5iB9BQKK2Hl5CPBLe08ZZvuqxE7A6RqR2mVnOMxcwpXurIlCq7WCTmMbYzKKGk00AS8oCcGdJ8TIWcddfxF5oU7mDmZPjke7Ln446M2sWcLK~iUvPV1xw__",
+  "IGNUS.JPG": ignus,
+  IGNIGY: "https://www.sparksarts.co.uk/wp-content/uploads/2022/03/Top-10-Easy-Filmmaking-Tips-for-Beginners-2-1024x683.jpg",
+  SHORTMOVIEMAKING: "https://miro.medium.com/v2/resize:fit:1400/1*CHNXavYcG3iSKZfd0oEwzQ.jpeg",
 
   // Lifestyle Events
-  COSPLAY: "https://media-hosting.imagekit.io//50012084ac5749f7/Untitled%20design%20(52).webp?Expires=1831194061&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=2fn3Ib9qb8jEPI3qNQVPWzRRaDPUjtwpLmsQuvJ7nDcMlLtWrbuJRcrAWXrg4ffdu7I1SjGVjOtTmjSsAP46seB8r4qyWoc4hRUouyBXdoyWdf-FUEv0BlTCG7NTH9g98Q275N1fYdQXQIgxiq71bmuMT-HwpxqArDHSakhQNmCgyR4dVuky~xaiiSMcg6UohKeJoAJhybuXitK5D9tJo9ClKqzj78w0CEzAEteAuDRNxVtQW6JrCPSHbD1ETetPOGFuF8Nkr3yveRe~LlDDcXNzpQEPBHybfiThM-9uEDSOzrPPBr-NDtLmHc1MYLEjymTAJq6WSJlVXS2WP0cpyg__",
-  DIGITALARENA: "https://media-hosting.imagekit.io//bb70bf7e065b4985/Untitled%20design%20(51).webp?Expires=1831194035&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DuGZ838-p-3j3x-i~W0OwGi8JM2JaVVz~lOXQ8C0K5N6jAUBMIneqNieopRazwptFpi2CVuXm96tcQbSAJNxpFpc0B077WAOf7nta0wBSZRyk-OOvTf9rgEhEa5peCYMEmcjguKR4p4GzwLPFzHup-4nEGytAqlWA0z2rql76UYRW6CPg~R3HpJ-lFLRu-QpnzzKgqNjTwycW6SvVNH~EMJ6JFdemewUl6Go~UuOmnapKXZHGv8S72Kz8dn-KsBa3NAV-xZOGqti8Kf0jusq9Zkj7-iONKiALSUEY94fHtsRIMwa9LwmrB0A438TyAiuV-c4fgjTJqg6RvFOZW5rHQ__",
-  DUBSMASH: "https://media-hosting.imagekit.io//a81e7bdef93f47f1/Untitled%20design%20(55).webp?Expires=1831194205&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Xzy3ZKgowsX5Jd7uU5c4Zqm1rYHV-YZwlIF9bHEG-9HsDk0WrooBBYIudAHLVMcxNMEz0MMXu1PYce1cbjlUkAbvwifj29uZl85E0eKFriV96X3dHJWqaGEbmwN7ue2hvp6410-B3Qyy6QWWtm3Gp2LG26VGdbV~KH4sO84nSpXpsxD4-vo3PmvIfrrq-gHC2RwdO7BQE0mlQdXEfMvmalGKYoQKDJi5F5iB9BQKK2Hl5CPBLe08ZZvuqxE7A6RqR2mVnOMxcwpXurIlCq7WCTmMbYzKKGk00AS8oCcGdJ8TIWcddfxF5oU7mDmZPjke7Ln446M2sWcLK~iUvPV1xw__",
-  LOLLAPALOOZA: "https://media-hosting.imagekit.io//a81e7bdef93f47f1/Untitled%20design%20(55).webp?Expires=1831194205&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Xzy3ZKgowsX5Jd7uU5c4Zqm1rYHV-YZwlIF9bHEG-9HsDk0WrooBBYIudAHLVMcxNMEz0MMXu1PYce1cbjlUkAbvwifj29uZl85E0eKFriV96X3dHJWqaGEbmwN7ue2hvp6410-B3Qyy6QWWtm3Gp2LG26VGdbV~KH4sO84nSpXpsxD4-vo3PmvIfrrq-gHC2RwdO7BQE0mlQdXEfMvmalGKYoQKDJi5F5iB9BQKK2Hl5CPBLe08ZZvuqxE7A6RqR2mVnOMxcwpXurIlCq7WCTmMbYzKKGk00AS8oCcGdJ8TIWcddfxF5oU7mDmZPjke7Ln446M2sWcLK~iUvPV1xw__",
-  COSTUMEDESIGNING: "https://media-hosting.imagekit.io//33e48c50109846bc/Untitled%20design%20(50).webp?Expires=1831193998&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=t32SM5QqH-I3pNzHwMOBGUV0T6IUUBV2lBajfaol6j2OZMXmlpyjBxokF92xp~wp7gJ-gSrtnzgWbREMUgD3yL9aQECyjWHOIAaBnMwuvaVK3bc7sWGqAZCtWXpWBR9ecjrSlDChfPMGV-qsEBeFHLgKLAB1GybjKFd45133YkyIGCya1rvtkdtnFhWezrV5za4k~4PQilxY-dC4w5nP1c7sRsoWr8ev5Q~eT1QrYCtmcjbLXW5OBFb7rS4kyzbmE7hvGp63WEAk0brEk7Ut-O9TIfMMBJW2T5E4S~nGMvisfQM3rypxvfZDag7w6dvT8spEhMZV34jRnDJaWEWrsQ__",
-  "MR.ANDMRS.IGNUS": "https://media-hosting.imagekit.io//b95ce6adfac24bfc/Untitled%20design%20(49).webp?Expires=1831193969&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=KhoQ8ndgP~qmT93~wV5QGeZxE8q4ffq-cyDzJNMeNAhg-ZkwOuxPT6rNuhNLhd48vR-H8SYhPcOOYO8KdTDh~V9MHDeqSQlxL2E3JwwaBiJmDIGycjnYELOikyYg3ts3Sh0Bone-7jStZcnaFIT0jkXMkT2LG55KVrUVStZAIDyYYQNwkOlahHXhAviMFONL0JIJ7MI13FNklaztZvaAydMd91wFWEeQmqY23j7tRK86yGMRIuYaYROM3WSUecT~8njBo1oVQKPOU1ekUOs--KKrjfCXPyZrvLMr2JyY~CvatZeP4nRoWcogG3mB~9bf-chPqmTmvE-qNPa4OTYaKA__",
+  COSPLAY: cos,
+  DIGITALARENA: "https://dancehubtv.uk/wp-content/uploads/2020/11/header-4-1024x424.jpg",
+  DUBSMASH: dub,
+  LOLLAPALOOZA: "https://i.pinimg.com/736x/ac/b7/e2/acb7e24c756e765d16e46f8de451c2f9.jpg",
+  COSTUMEDESIGNING: "https://jdinstituteoffashiontechnology.b-cdn.net/wp-content/uploads/2021/07/Costume-Designing-As-A-Profession-What-Should-You-Expect-Thumbnail.jpg",
+  "MR.ANDMRS.IGNUS": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT56haMI-IROURtyA_edjuHQf5hl5N2GOGGDg&s",
 };
 
 function Events() {
