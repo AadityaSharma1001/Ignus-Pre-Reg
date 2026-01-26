@@ -626,7 +626,7 @@ function Events() {
               <div className="modal-left">
                 <img
                   src={
-                    selectedBackendEvent
+                    selectedBackendEvent?.cover
                       ? selectedBackendEvent.cover        // specific event image
                       : selectedCategoryImage             // dance category image
                   }
