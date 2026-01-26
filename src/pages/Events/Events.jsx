@@ -459,7 +459,7 @@ function Events() {
             <button
               key={event.name}
               className="event-item"
-              onClick={() => handleEventClick(event.name, "INFORMAL")}
+              onClick={() => openModal(event.name, "INFORMAL")}
             >
               {event.name}
             </button>
