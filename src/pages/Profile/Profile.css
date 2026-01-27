@@ -446,6 +446,25 @@
   opacity: 1;
 }
 
+.event-card h4 {
+  font-family: 'Caudex', serif;
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.event-meta {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  margin: 0;
+  word-break: break-all;
+}
+
 .event-name {
   font-family: 'Caudex', serif;
   font-size: 1.2rem;
