@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { navLinks } from "./navLinks";
 import logo from "../../assets/logo.svg";
@@ -8,11 +8,14 @@ import { isLoggedIn, isProfileComplete, clearAuthCookies } from "../../utils/coo
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
   // ✅ login state from cookie
 
   const handleLogout = async () => {
+    setProfileDropdownOpen(false);
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/account/logout/`, {
         method: "POST",
@@ -36,6 +39,17 @@ export default function Navbar() {
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -72,24 +86,76 @@ export default function Navbar() {
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center gap-3">
             {isLoggedIn() && isProfileComplete() ? (
-              <>
-                <Link
-                  to="/profile"
-                  className="transition-opacity hover:opacity-80"
-                >
-                  <img
-                    src={profile}
-                    alt="Profile"
-                    className="h-8 w-8"
-                  />
-                </Link>
+              <div className="relative" ref={dropdownRef}>
+                {/* Profile Image Button */}
                 <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 rounded-full bg-purple-600 text-white font-medium hover:bg-purple-700 transition ml-2"
+                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                  className="relative group focus:outline-none"
+                  aria-label="Profile menu"
+                  aria-expanded={profileDropdownOpen}
                 >
-                  Logout
+                  <div className="relative">
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-purple-500/40 rounded-full blur-md group-hover:bg-purple-400/60 transition-all duration-300" />
+                    {/* Profile image container */}
+                    <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-purple-400/50 group-hover:border-purple-300 transition-all duration-300 group-hover:scale-105">
+                      <img
+                        src={profile}
+                        alt="Profile"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    {/* Status indicator */}
+                    <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 bg-green-500 rounded-full border-2 border-gray-900" />
+                  </div>
                 </button>
-              </>
+
+                {/* Dropdown Menu */}
+                {profileDropdownOpen && (
+                  <div className="absolute right-0 mt-3 w-48 origin-top-right">
+                    {/* Dropdown arrow */}
+                    <div className="absolute -top-2 right-4 w-4 h-4 bg-gray-800/95 rotate-45 border-l border-t border-purple-500/30" />
+                    
+                    {/* Dropdown content */}
+                    <div className="relative bg-gray-800/95 backdrop-blur-xl rounded-xl border border-purple-500/30 shadow-xl shadow-purple-900/20 overflow-hidden">
+                      {/* Gradient accent */}
+                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500" />
+                      
+                      <div className="py-2">
+                        {/* Profile Option */}
+                        <Link
+                          to="/profile"
+                          onClick={() => setProfileDropdownOpen(false)}
+                          className="flex items-center gap-3 px-4 py-3 text-white hover:bg-purple-500/20 transition-all duration-200 group"
+                        >
+                          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors">
+                            <svg className="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                          </div>
+                          <span className="font-medium text-sm">My Profile</span>
+                        </Link>
+
+                        {/* Divider */}
+                        <div className="mx-4 my-1 border-t border-gray-700/50" />
+
+                        {/* Logout Option */}
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center gap-3 w-full px-4 py-3 text-white hover:bg-red-500/20 transition-all duration-200 group"
+                        >
+                          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/20 group-hover:bg-red-500/30 transition-colors">
+                            <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                          </div>
+                          <span className="font-medium text-sm text-red-400 group-hover:text-red-300">Logout</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <Link
                 to="/login"

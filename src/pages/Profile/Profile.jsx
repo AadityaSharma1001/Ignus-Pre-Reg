@@ -32,12 +32,6 @@ export default function Profile() {
           return;
         }
 
-        if (res.status === 401 || res.status === 403) {
-          clearAuthCookies();
-          window.location.replace("/login");
-          return;
-        }
-
         if (!res.ok) {
           throw new Error(`Failed to fetch profile (${res.status})`);
         }

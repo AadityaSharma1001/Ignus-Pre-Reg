@@ -32,7 +32,6 @@ function App() {
           <Route path="/prakriti" element={<Prakrit />} />
           <Route path="/login" element={<Login />} />
           <Route path="/ca" element={<CA />} />
-          🔐 PROTECTED ROUTE
           <Route
             path="/profile"
             element={
