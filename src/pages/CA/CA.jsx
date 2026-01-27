@@ -2,14 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import "./CA.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { isLoggedIn, isCA, getIgnusID } from "../../utils/cookies";
 
 const CA = () => {
   document.title = "CA | Ignus 26 IIT Jodhpur";
 
   const videoRef = useRef(null);
 
-  const isCa = String(cookieStore.isCA).toLowerCase() === "true";
-  const ignusID = cookieStore.ignusID;
+  const isCa = isCA();
+  const ignusID = getIgnusID();
 
   const [numberOfReferrals, setNumberOfReferrals] = useState(0);
   const [CAPerksDetails, setCAPerksDetails] = useState(false);
@@ -21,7 +22,7 @@ const CA = () => {
   }, []);
 
   const handleCARegisterButton = () => {
-    if (cookieStore.LoggedIn) {
+    if (isLoggedIn()) {
       // handleCARegister();
     } else {
       toast.error("Please Login first!");

@@ -284,3 +284,17 @@ select option {
   color: white;
   padding: 10px;
 }
+
+/* Input text styling - black text for readability */
+.form-content input,
+.form-content input::placeholder {
+  color: #1a1a1a !important;
+}
+
+.form-content input {
+  caret-color: #1a1a1a;
+}
+
+.form-content select {
+  color: #1a1a1a !important;
+}
