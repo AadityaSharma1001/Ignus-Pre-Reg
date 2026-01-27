@@ -24,6 +24,7 @@ const CA = () => {
   const handleCARegisterButton = () => {
     if (isLoggedIn()) {
       // handleCARegister();
+      toast.success("You are logged in! CA registration coming soon...");
     } else {
       toast.error("Please Login first!");
       setTimeout(() => {
