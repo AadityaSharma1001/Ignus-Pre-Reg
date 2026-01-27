@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Loading from "../Loading/Loading";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import mascot from "./assets/mascot.svg";
 import wheel_circle from "./assets/wheel_circle.svg";
@@ -21,6 +21,7 @@ import "./Login.css";
 
 export default function Auth() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Views: 'login', 'signup', 'complete-profile'
   const [currentView, setCurrentView] = useState("login");
@@ -29,12 +30,28 @@ export default function Auth() {
   const [showLoading, setShowLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
 
-  // const getCookie = (name) => {
-  //   return document.cookie
-  //     .split("; ")
-  //     .find((row) => row.startsWith(name + "="))
-  //     ?.split("=")[1];
-  // };
+  // Check for errors in URL and cookies on component mount
+  useEffect(() => {
+    // Check for error in URL params (from Google OAuth redirect)
+    const urlParams = new URLSearchParams(location.search);
+    const error = urlParams.get('Error') || urlParams.get('error');
+    if (error) {
+      toast.error(decodeURIComponent(error));
+      // Clear the error from URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Check if user is already logged in
+    if (isLoggedIn()) {
+      if (isProfileComplete()) {
+        // Redirect to profile if fully logged in
+        navigate('/profile');
+      } else {
+        // Show complete profile form if logged in but profile incomplete
+        setCurrentView('complete-profile');
+      }
+    }
+  }, [location.search, navigate]);
 
   // Form states
   const [loginData, setLoginData] = useState({
@@ -313,20 +330,15 @@ export default function Auth() {
   };
 
   const handleGoogleLogin = () => {
+    setLoadingMessage("Redirecting to Google...");
+    setShowLoading(true);
     window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/accounts/login/google/`;
   };
 
   const handleGoogleSignup = () => {
-    const params = new URLSearchParams({
-      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-      redirect_uri: `${import.meta.env.VITE_BACKEND_URL}/api/accounts/register/google/`,
-      response_type: "code",
-      scope: "openid email profile",
-      access_type: "online",
-      prompt: "select_account",
-    });
-    console.log(params.toString());
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+    setLoadingMessage("Redirecting to Google...");
+    setShowLoading(true);
+    window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/accounts/register/google/`;
   };
 
   const handleFileUpload = (field, e) => {
@@ -412,20 +424,25 @@ export default function Auth() {
                   </div>
                 </form>
 
-                {/* <div className="mt-6 text-center">
-                  <p className="text-white/60 mb-4">Or</p>
-                  <button
-                    onClick={handleGoogleLogin}
-                    className="w-full py-3 bg-white hover:bg-gray-100 text-gray-700 font-medium rounded-full flex items-center justify-center gap-3 transition-colors"
-                  >
-                    <img
-                      src={devicon_google}
-                      alt="Google"
-                      className="w-5 h-5"
-                    />
-                    Sign in with Google
-                  </button>
-                </div> */}
+                {/* Google Login Divider */}
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="flex-1 h-px bg-gray-400/50"></div>
+                  <span className="text-gray-600 text-sm font-medium">OR</span>
+                  <div className="flex-1 h-px bg-gray-400/50"></div>
+                </div>
+
+                {/* Google Login Button */}
+                <button
+                  onClick={handleGoogleLogin}
+                  className="mt-4 w-full py-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-full flex items-center justify-center gap-3 transition-all duration-200 shadow-md hover:shadow-lg border border-gray-200"
+                >
+                  <img
+                    src={devicon_google}
+                    alt="Google"
+                    className="w-5 h-5"
+                  />
+                  <span>Continue with Google</span>
+                </button>
 
                 <p className="mt-6 text-center text-gray-800 text-base font-medium">
                   Don't have an account?{" "}
@@ -511,20 +528,25 @@ export default function Auth() {
                   </div>
                 </form>
 
-                {/* <div className="mt-6 text-center">
-                  <p className="text-white/60 mb-4">Or</p>
-                  <button
-                    onClick={handleGoogleSignup}
-                    className="w-full py-3 bg-white hover:bg-gray-100 text-gray-700 font-medium rounded-full flex items-center justify-center gap-3 transition-colors"
-                  >
-                    <img
-                      src={devicon_google}
-                      alt="Google"
-                      className="w-5 h-5"
-                    />
-                    Sign up with Google
-                  </button>
-                </div> */}
+                {/* Google Signup Divider */}
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="flex-1 h-px bg-gray-400/50"></div>
+                  <span className="text-gray-600 text-sm font-medium">OR</span>
+                  <div className="flex-1 h-px bg-gray-400/50"></div>
+                </div>
+
+                {/* Google Signup Button */}
+                <button
+                  onClick={handleGoogleSignup}
+                  className="mt-4 w-full py-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-full flex items-center justify-center gap-3 transition-all duration-200 shadow-md hover:shadow-lg border border-gray-200"
+                >
+                  <img
+                    src={devicon_google}
+                    alt="Google"
+                    className="w-5 h-5"
+                  />
+                  <span>Continue with Google</span>
+                </button>
 
                 <p className="mt-6 text-center text-gray-800 text-base font-medium">
                   Already have an account?{" "}
