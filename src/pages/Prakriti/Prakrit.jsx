@@ -147,7 +147,7 @@ function Prakrit() {
                         <img src={PrakritiLogo} alt='Prakriti' />
                     </a>
                     <div className="Prakriti_contact" >
-                        <b>Mayank Kunjilwar</b>
+                        <b>Jigyasa Tiwari</b>
                         <br></br>
                         <a href="tel:+917000366905" className='text-[14px]' >+91 7000366905</a>
                         <br></br>
