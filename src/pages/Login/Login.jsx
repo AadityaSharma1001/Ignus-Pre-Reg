@@ -288,6 +288,11 @@ export default function Auth() {
   };
 
   const handleConfirmAndSave = async () => {
+    // Show loading immediately
+    setLoadingMessage("Completing your profile...");
+    setShowLoading(true);
+    setShowModal(false);
+
     try {
       const formData = new FormData();
 
@@ -310,22 +315,26 @@ export default function Auth() {
           body: formData,
         },
       );
-      setLoadingMessage("Signing you up...");
-      setShowLoading(true);
-      setTimeout(() => setShowLoading(false), 2000);
 
       if (!res.ok) {
         const msg = await res.text();
         toast.error(msg || "Profile update failed");
+        setShowLoading(false);
         return;
       }
 
+      setLoadingMessage("Profile completed! Redirecting...");
       toast.success("Profile completed 🎉");
-      setShowModal(false);
-      navigate("/profile");
+
+      // Small delay before redirect to show success message
+      setTimeout(() => {
+        setShowLoading(false);
+        navigate("/profile");
+      }, 1500);
     } catch (err) {
       console.error(err);
       toast.error("Something went wrong");
+      setShowLoading(false);
     }
   };
 
