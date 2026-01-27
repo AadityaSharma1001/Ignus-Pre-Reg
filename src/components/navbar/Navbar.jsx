@@ -3,20 +3,14 @@ import { Link } from "react-router-dom";
 import { navLinks } from "./navLinks";
 import logo from "../../assets/logo.svg";
 import profile from "../../assets/profile.svg";
+import { isLoggedIn, isProfileComplete} from "../../utils/cookies";
 
-/* -------- Helper to read cookie -------- */
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
-  return null;
-}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   // ✅ login state from cookie
-  const isLoggedIn = !!localStorage.getItem("access") || getCookie("LoggedIn") === "true";
+
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
@@ -62,7 +56,7 @@ export default function Navbar() {
 
           {/* Desktop Right Section */}
           <div className="hidden lg:flex items-center">
-            {isLoggedIn ? (
+            {isLoggedIn() && isProfileComplete() ? (
               <Link
                 to="/profile"
                 className="transition-opacity hover:opacity-80"
@@ -114,7 +108,7 @@ export default function Navbar() {
 
               {/* Mobile Auth Section */}
               <li>
-                {isLoggedIn ? (
+                {isLoggedIn() && isProfileComplete() ? (
                   <Link
                     to="/profile"
                     onClick={() => setOpen(false)}
