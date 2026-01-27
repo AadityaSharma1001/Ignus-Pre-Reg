@@ -95,7 +95,7 @@
 
 /* Gold Variant */
 .pass-card.gold {
-    background: rgba(255, 200, 0, 0.74);
+    background: rgba(255, 200, 0, 0.9);
     color: #ffffff;
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);

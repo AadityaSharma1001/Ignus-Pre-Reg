@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
+import Logo from "../../assets/logo.svg";
 import "./Passes.css";
 import {
   isLoggedIn,
@@ -14,17 +15,17 @@ const PassCard = ({ variant, title, subtitle, price }) => {
     <div className={`pass-card ${variant}`}>
       <div className="pass-card-header">
         <h3 className="pass-title">{title}</h3>
-        
+
       </div>
 
       <p className="pass-subtitle">{subtitle}</p>
 
       <div className="pass-footer">
         <span className="pass-price">Rs. {price}</span>
-        <div className="pass-details-btn">
-          <div className="details-icon"></div>
+        <a className="pass-details-btn" href="https://drive.google.com/file/d/19yvdkVW2z-BazmIxRtbsKqKFy01wAZC5/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <img src={Logo} className="details-icon"></img>
           <span>Details</span>
-        </div>
+        </a>
       </div>
     </div>
   );
