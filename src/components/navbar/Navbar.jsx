@@ -115,12 +115,12 @@ export default function Navbar() {
                   <div className="absolute right-0 mt-3 w-48 origin-top-right">
                     {/* Dropdown arrow */}
                     <div className="absolute -top-2 right-4 w-4 h-4 bg-gray-800/95 rotate-45 border-l border-t border-purple-500/30" />
-                    
+
                     {/* Dropdown content */}
                     <div className="relative bg-gray-800/95 backdrop-blur-xl rounded-xl border border-purple-500/30 shadow-xl shadow-purple-900/20 overflow-hidden">
                       {/* Gradient accent */}
                       <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500" />
-                      
+
                       <div className="py-2">
                         {/* Profile Option */}
                         <Link
@@ -216,7 +216,7 @@ export default function Navbar() {
                     <button
                       onClick={() => {
                         setOpen(false);
-                        handleLogout;
+                        handleLogout();
                       }}
                       className="w-full text-left py-2 font-rosiana text-lg text-purple-300"
                     >
