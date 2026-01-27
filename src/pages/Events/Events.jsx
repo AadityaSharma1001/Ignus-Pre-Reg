@@ -148,6 +148,7 @@ function Events() {
   const [selectedBackendEvent, setSelectedBackendEvent] = useState(null);
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_BACKEND_URL)
     fetch(`${import.meta.env.VITE_BACKEND_URL}/events/list`)
       .then((res) => res.json())
       .then((data) => {
