@@ -26,8 +26,6 @@ export default function Profile() {
           },
         );
 
-        console.log("Profile fetch response:", res);
-
         if (res.status === 401 || res.status === 403) {
           clearAuthCookies();
           window.location.href = "/login";
@@ -48,6 +46,7 @@ export default function Profile() {
 
         console.log("Profile data:", data);
         const { user, userprofile } = data;
+        console.log("Events:", userprofile.events);
 
         setProfileData({
           name:
@@ -200,8 +199,9 @@ export default function Profile() {
             {eventsRegistered.length > 0 ? (
               <div className="events-grid">
                 {eventsRegistered.map((event, idx) => (
-                  <div key={idx} className="event-item event-card">
-                    {event}
+                  <div key={event.team_id} className="event-item event-card">
+                    <h4>{event.name}</h4>
+                    <p className="event-meta">Team ID: {event.team_id}</p>
                   </div>
                 ))}
               </div>
