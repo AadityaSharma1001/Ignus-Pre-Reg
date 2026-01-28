@@ -523,218 +523,6 @@ div.online {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
 }
 
-/* ================================================= */
-/* ================= EVENT MODAL =================== */
-/* ================================================= */
-
-.modal-content {
-  /* display: flex; */
-  height: 100%;
-  gap: 24px;
-}
-
-/* LEFT IMAGE */
-.modal-left {
-  width: 50%;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.modal-event-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* RIGHT TEXT */
-.modal-right {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.modal-right h2 {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.14em;
-  margin-bottom: 16px;
-}
-
-.modal-right p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  margin-bottom: 10px;
-  color: #444;
-}
-
-
-.event-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(16.5px);
-  -webkit-backdrop-filter: blur(16.5px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10000;
-}
-
-/* Glassmorphism modal */
-.event-modal {
-  width: 75%;
-  height: 75%;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(16.5px);
-  -webkit-backdrop-filter: blur(16.5px);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  /* padding: 32px; */
-  overflow-y: auto;
-  position: fixed;
-  top: 10%;
-  left: 12.5%;
-  color: #ffffff;
-  animation: modalFadeUp 0.35s ease;
-}
-
-/* Scrollbar styling (optional but clean) */
-.event-modal::-webkit-scrollbar {
-  width: 6px;
-}
-
-.event-modal::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-}
-
-/* Close button */
-.modal-close {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-/* Headings */
-.event-modal h2 {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 3.5rem;
-  letter-spacing: 0.15em;
-  margin-bottom: 14px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Text */
-.event-modal p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 12px;
-  text-align: center;
-}
-
-/* Action button */
-.modal-action-btn {
-  margin-top: 20px;
-  background: #ffc529;
-  border: none;
-  border-radius: 999px;
-  padding: 14px 36px;
-  font-family: 'Caudex', serif;
-  font-size: 1rem;
-  letter-spacing: 0.15em;
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.modal-action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
-}
-
-.modal-register-btn {
-  margin-top: 24px;
-  padding: 0 2vw;
-  height: 3.2vw;
-  background: #FABB1E;
-  color: #fff;
-
-  border: none;
-  border-radius: 999px;
-  font-size: 1.3vw;
-  letter-spacing: 0.12em;
-  font-family: 'Caudex', serif;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  width: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  box-shadow: 0 10px 20px rgba(245, 197, 66, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.modal-register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
-
-/* Animation */
-@keyframes modalFadeUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ================= CULTURAL MODAL EVENT LIST ================= */
-
-.modal-event-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-
-/* Clean scrollbar */
-.modal-event-list::-webkit-scrollbar {
-  width: 5px;
-}
-
-.modal-event-list::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 10px;
-}
-
-/* LEFT IMAGE SHOULD ALWAYS BE STATIC CATEGORY IMAGE */
-.modal-left img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 
 /* ================================================= */
 /* ============ EVENTS PAGE FOOTER BAR ============= */
@@ -1256,7 +1044,43 @@ div.online {
   }
 
   /* ================= MODAL ================= */
-  
+  .event-modal {
+    width: 92%;
+    height: 85%;
+    left: 4%;
+    top: 7%;
+    padding: 18px;
+  }
+
+  .modal-content {
+    flex-direction: column;
+  }
+
+  .modal-left {
+    width: 100%;
+    height: auto;
+    max-height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-event-image {
+    width: auto;
+    height: auto;
+    /* max-width: 100%; */
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .modal-right h2 {
+    font-size: 1.3rem;
+  }
+
+  .modal-right p {
+    font-size: 0.9rem;
+  }
 }
 
 @media screen and (max-width: 850px) {
