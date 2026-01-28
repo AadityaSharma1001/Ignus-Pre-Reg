@@ -15,6 +15,13 @@ export default function Profile() {
   const [profileData, setProfileData] = useState(null);
   const [eventsRegistered, setEventsRegistered] = useState([]);
 
+  // Add Member feature state
+  const [expandedEventId, setExpandedEventId] = useState(null);
+  const [memberIgnusId, setMemberIgnusId] = useState("");
+  const [addMemberLoading, setAddMemberLoading] = useState(false);
+  const [addMemberMessage, setAddMemberMessage] = useState({ type: "", text: "" });
+  const [teamMembers, setTeamMembers] = useState({});
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -79,6 +86,78 @@ export default function Profile() {
 
   const handlePassClick = () => setIsFlipped(!isFlipped);
 
+  // Toggle the add member form for an event
+  const toggleAddMember = (teamId) => {
+    if (expandedEventId === teamId) {
+      setExpandedEventId(null);
+      setMemberIgnusId("");
+      setAddMemberMessage({ type: "", text: "" });
+    } else {
+      setExpandedEventId(teamId);
+      setMemberIgnusId("");
+      setAddMemberMessage({ type: "", text: "" });
+    }
+  };
+
+  // Handle adding a member to the team
+  const handleAddMember = async (teamId) => {
+    if (!memberIgnusId.trim()) {
+      setAddMemberMessage({ type: "error", text: "Please enter an Ignus ID" });
+      return;
+    }
+
+    setAddMemberLoading(true);
+    setAddMemberMessage({ type: "", text: "" });
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/events/update-team/`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            team_id: teamId,
+            member: memberIgnusId.trim(),
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Success - update local state
+        setAddMemberMessage({ type: "success", text: data.message });
+        setMemberIgnusId("");
+
+        // Update team members display
+        if (data.team && data.team.members) {
+          setTeamMembers((prev) => ({
+            ...prev,
+            [teamId]: data.team.members,
+          }));
+        }
+      } else if (res.status === 403) {
+        setAddMemberMessage({ type: "error", text: "You are not the team leader" });
+      } else if (res.status === 404) {
+        setAddMemberMessage({ type: "error", text: "The Ignus ID you entered does not exist" });
+      } else if (res.status === 402) {
+        setAddMemberMessage({ type: "error", text: data || "Member has not completed payment" });
+      } else if (res.status === 406) {
+        setAddMemberMessage({ type: "error", text: data.message || data || "Cannot add member" });
+      } else {
+        setAddMemberMessage({ type: "error", text: "Something went wrong" });
+      }
+    } catch (err) {
+      console.error("Add member error:", err);
+      setAddMemberMessage({ type: "error", text: "Network error. Please try again." });
+    } finally {
+      setAddMemberLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="profile-container">
@@ -139,9 +218,8 @@ export default function Profile() {
 
           {/* Digital Pass */}
           <div
-            className={`pass-card-container animate-slide-up delay-300 ${
-              isFlipped ? "flipped" : ""
-            }`}
+            className={`pass-card-container animate-slide-up delay-300 ${isFlipped ? "flipped" : ""
+              }`}
             onClick={handlePassClick}
           >
             <div className="pass-card-inner">
@@ -193,9 +271,66 @@ export default function Profile() {
             {eventsRegistered.length > 0 ? (
               <div className="events-grid">
                 {eventsRegistered.map((event, idx) => (
-                  <div key={event.team_id} className="event-item event-card">
+                  <div
+                    key={event.team_id}
+                    className={`event-item event-card ${expandedEventId === event.team_id ? 'expanded' : ''}`}
+                  >
                     <h4>{event.name}</h4>
                     <p className="event-meta">Team ID: {event.team_id}</p>
+
+                    {/* Team Members Display */}
+                    {teamMembers[event.team_id] && teamMembers[event.team_id].length > 0 && (
+                      <div className="team-members-list">
+                        <p className="team-members-title">Team Members:</p>
+                        {teamMembers[event.team_id].map((member, mIdx) => (
+                          <span key={mIdx} className="team-member-chip">
+                            {member.name || member}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Add Member Button */}
+                    <button
+                      className="add-member-toggle-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleAddMember(event.team_id);
+                      }}
+                    >
+                      {expandedEventId === event.team_id ? '✕ Cancel' : '+ Add Member'}
+                    </button>
+
+                    {/* Add Member Form */}
+                    {expandedEventId === event.team_id && (
+                      <div className="add-member-section">
+                        <input
+                          type="text"
+                          className="add-member-input"
+                          placeholder="Enter Ignus ID"
+                          value={memberIgnusId}
+                          onChange={(e) => setMemberIgnusId(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleAddMember(event.team_id);
+                          }}
+                          disabled={addMemberLoading}
+                        />
+                        <button
+                          className="add-member-btn"
+                          onClick={() => handleAddMember(event.team_id)}
+                          disabled={addMemberLoading}
+                        >
+                          {addMemberLoading ? 'Adding...' : 'Add'}
+                        </button>
+
+                        {/* Feedback Message */}
+                        {addMemberMessage.text && (
+                          <p className={`member-message ${addMemberMessage.type}`}>
+                            {addMemberMessage.text}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

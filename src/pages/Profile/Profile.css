@@ -483,6 +483,144 @@
   }
 }
 
+/* --- Add Member Feature --- */
+.event-card.expanded {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.add-member-toggle-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 8px;
+  color: #d4af37;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+}
+
+.add-member-toggle-btn:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.2));
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+.add-member-section {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: slideUpFade 0.3s ease-out;
+}
+
+.add-member-input {
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.add-member-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.add-member-input:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.add-member-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.add-member-btn {
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #d4af37, #b8972e);
+  border: none;
+  border-radius: 8px;
+  color: #0a0a12;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.add-member-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e6c349, #d4af37);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.add-member-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.member-message {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0;
+  text-align: center;
+  animation: slideUpFade 0.3s ease-out;
+}
+
+.member-message.success {
+  background: rgba(46, 204, 113, 0.2);
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  color: #2ecc71;
+}
+
+.member-message.error {
+  background: rgba(231, 76, 60, 0.2);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  color: #e74c3c;
+}
+
+.team-members-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.team-members-title {
+  font-size: 0.75rem;
+  color: #a0c4ff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.team-member-chip {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  background: rgba(160, 196, 255, 0.15);
+  border: 1px solid rgba(160, 196, 255, 0.3);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-right: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .profile-grid {
