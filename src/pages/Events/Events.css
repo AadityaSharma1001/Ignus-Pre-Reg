@@ -529,7 +529,6 @@ div.online {
 
 .modal-content {
   display: flex;
-  width: 100%;
   height: 100%;
   gap: 24px;
 }
@@ -1015,7 +1014,7 @@ div.online {
   }
 
   .modal-content {
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 20px;
   }
 

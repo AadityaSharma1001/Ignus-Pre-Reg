@@ -37,7 +37,28 @@ export default function Profile() {
 
         if (res.status === 401 || res.status === 403) {
           clearAuthCookies();
-          window.location.href = "/login";
+          if(res.status === 401){
+             if(getRefreshToken()){
+                const res = await fetch(
+                  `${import.meta.env.VITE_BACKEND_URL}/api/accounts/refresh-token/`,
+                  {
+                    method: "POST",
+                    credentials: "include", // 🔥 REQUIRED
+                  },
+                );
+                if (res.ok) {
+                  const data = await res.json();
+                  setAccessToken(data.access);
+                  setRefreshToken(data.refresh);
+                  window.location.href = "/profile";
+                  return;
+                }
+             }
+             else{
+              clearAuthCookies();
+              window.location.href = "/login";
+             }
+          }
           return;
         }
 
