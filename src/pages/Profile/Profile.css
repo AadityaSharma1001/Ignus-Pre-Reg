@@ -515,21 +515,22 @@
   white-space: nowrap;
 }
 
-/* Modal Styles */
+/* Modal Styles - Improved */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 1rem;
-  animation: fadeIn 0.2s ease-out;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease-out;
 }
 
 @keyframes fadeIn {
@@ -543,56 +544,84 @@
 }
 
 .modal-content {
-  max-width: 500px;
+  max-width: 450px;
   width: 100%;
-  max-height: 80vh;
+  max-height: 85vh;
   overflow-y: auto;
-  animation: slideUpFade 0.3s ease-out;
+  animation: modalSlideIn 0.3s ease-out;
+  padding: 2rem;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .modal-header h3 {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #ffffff;
   margin: 0;
+  letter-spacing: 1px;
 }
 
 .modal-close-btn {
   background: rgba(255, 255, 255, 0.1);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
   border-radius: 50%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .modal-close-btn:hover {
-  background: rgba(231, 76, 60, 0.4);
+  background: rgba(231, 76, 60, 0.6);
+  border-color: rgba(231, 76, 60, 0.8);
+  transform: rotate(90deg);
 }
 
 .modal-event-name {
   font-family: 'Caudex', serif;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #d4af37;
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
 }
 
 .modal-team-id {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
   margin: 0 0 1.5rem 0;
+  word-break: break-all;
+}
+
+.modal-team-id span {
+  font-family: 'Courier New', monospace;
+  color: #a0c4ff;
 }
 
 .modal-members-list {
@@ -604,198 +633,54 @@
 .modal-member-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.modal-member-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
 }
 
 .member-avatar {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
 .member-name {
   color: #ffffff;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .modal-no-members {
   text-align: center;
   color: rgba(255, 255, 255, 0.5);
   font-style: italic;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
+  line-height: 1.6;
 }
 
-/* Legacy grid styles - keep for backwards compatibility */
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
 
-.event-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 1.5rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-/* Animations */
-@keyframes goldShine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .profile-content {
+    padding: 1.5rem;
   }
 
-  100% {
-    transform: translateX(100%) rotate(45deg);
+  .glass-card {
+    padding: 2rem;
   }
 }
 
-/* --- Add Member Feature --- */
-.event-card.expanded {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(212, 175, 55, 0.3);
-}
-
-.add-member-toggle-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  border-radius: 8px;
-  color: #d4af37;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Raleway', sans-serif;
-}
-
-.add-member-toggle-btn:hover {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.2));
-  border-color: rgba(212, 175, 55, 0.6);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-}
-
-.add-member-section {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  animation: slideUpFade 0.3s ease-out;
-}
-
-.add-member-input {
-  padding: 0.75rem 1rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 0.95rem;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-}
-
-.add-member-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.add-member-input:focus {
-  outline: none;
-  border-color: rgba(212, 175, 55, 0.5);
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
-}
-
-.add-member-input:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.add-member-btn {
-  padding: 0.7rem 1.5rem;
-  background: linear-gradient(135deg, #d4af37, #b8972e);
-  border: none;
-  border-radius: 8px;
-  color: #0a0a12;
-  font-size: 0.9rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Raleway', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.add-member-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #e6c349, #d4af37);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-}
-
-.add-member-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.member-message {
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  margin: 0;
-  text-align: center;
-  animation: slideUpFade 0.3s ease-out;
-}
-
-.member-message.success {
-  background: rgba(46, 204, 113, 0.2);
-  border: 1px solid rgba(46, 204, 113, 0.4);
-  color: #2ecc71;
-}
-
-.member-message.error {
-  background: rgba(231, 76, 60, 0.2);
-  border: 1px solid rgba(231, 76, 60, 0.4);
-  color: #e74c3c;
-}
-
-.team-members-list {
-  margin-top: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.team-members-title {
-  font-size: 0.75rem;
-  color: #a0c4ff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin: 0;
-}
-
-.team-member-chip {
-  display: inline-block;
-  padding: 0.25rem 0.6rem;
-  background: rgba(160, 196, 255, 0.15);
-  border: 1px solid rgba(160, 196, 255, 0.3);
-  border-radius: 20px;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-right: 0.4rem;
-  margin-bottom: 0.4rem;
-}
-
-/* Responsive */
+/* Tablets */
 @media (max-width: 900px) {
   .profile-grid {
     grid-template-columns: 1fr;
@@ -818,5 +703,224 @@
 
   .stats-bar {
     gap: 2rem;
+  }
+
+  .event-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .event-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .profile-container {
+    padding-top: 70px;
+  }
+
+  .profile-content {
+    padding: 1rem;
+    gap: 2rem;
+  }
+
+  .profile-name {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .profile-university {
+    font-size: 1rem;
+  }
+
+  .avatar-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+
+  .details-card h2,
+  .profile-pass-card h2,
+  .journey-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .details-list {
+    gap: 1.2rem;
+  }
+
+  .detail-label {
+    font-size: 0.75rem;
+  }
+
+  .detail-value {
+    font-size: 1rem;
+  }
+
+  /* Event list mobile */
+  .events-list {
+    gap: 0.75rem;
+  }
+
+  .event-list-item {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .event-title {
+    font-size: 1.1rem;
+  }
+
+  .event-team-id {
+    font-size: 0.8rem;
+  }
+
+  .event-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .view-team-btn,
+  .add-member-toggle-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .add-member-section {
+    margin-top: 0.75rem;
+  }
+
+  .add-member-form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .add-member-form-row .add-member-input {
+    min-width: 100%;
+  }
+
+  .add-member-form-row .add-member-btn {
+    width: 100%;
+  }
+
+  .add-member-input {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .add-member-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Modal mobile */
+  .modal-overlay {
+    padding: 1rem;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 1.5rem;
+    border-radius: 20px 20px 0 0;
+    animation: modalSlideUp 0.3s ease-out;
+  }
+
+  @keyframes modalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .modal-event-name {
+    font-size: 1.1rem;
+  }
+
+  .modal-team-id {
+    font-size: 0.85rem;
+  }
+
+  .modal-member-item {
+    padding: 0.85rem 1rem;
+  }
+
+  .member-name {
+    font-size: 0.9rem;
+  }
+
+  /* Pass card mobile */
+  .pass-type {
+    font-size: 1.4rem;
+  }
+
+  .pass-id {
+    font-size: 0.9rem;
+  }
+
+  .pass-hint {
+    font-size: 0.75rem;
+  }
+
+  /* Team members chips */
+  .team-member-chip {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .team-members-inline {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  /* Messages */
+  .member-message {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 380px) {
+  .profile-name {
+    font-size: 1.5rem;
+  }
+
+  .glass-card {
+    padding: 1.25rem;
+  }
+
+  .event-list-item {
+    padding: 0.85rem;
+  }
+
+  .event-title {
+    font-size: 1rem;
+  }
+
+  .modal-content {
+    padding: 1.25rem;
   }
 }

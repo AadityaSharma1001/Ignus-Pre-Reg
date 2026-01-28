@@ -373,7 +373,7 @@ export default function Profile() {
                 </button>
               </div>
               <p className="modal-event-name">{viewTeamModal.eventName || 'Event'}</p>
-              <p className="modal-team-id">Team ID: {viewTeamModal.teamId}</p>
+              <p className="modal-team-id">Team ID: <span>{viewTeamModal.teamId}</span></p>
 
               <div className="modal-members-list">
                 {teamMembers[viewTeamModal.teamId] && teamMembers[viewTeamModal.teamId].length > 0 ? (
