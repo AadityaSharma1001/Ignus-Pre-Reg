@@ -1190,3 +1190,42 @@
     opacity: 1;
   }
 }
+
+/* De-register Button */
+.de-register-btn {
+  padding: 0.5rem 1rem;
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.4);
+  border-radius: 8px;
+  color: #e74c3c;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+}
+
+.de-register-btn:hover {
+  background: rgba(231, 76, 60, 0.25);
+  border-color: rgba(231, 76, 60, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
+}
+
+/* Leader Badge */
+.leader-badge {
+  background: linear-gradient(135deg, #d4af37, #f5d061);
+  color: #0a0a12;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.leader-item {
+  border-left: 3px solid #d4af37 !important;
+  background: rgba(212, 175, 55, 0.05) !important;
+}

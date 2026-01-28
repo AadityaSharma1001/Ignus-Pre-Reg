@@ -163,7 +163,6 @@ export default function Profile() {
   // Fetch team details when modal opens
   useEffect(() => {
     if (viewTeamModal.open && viewTeamModal.teamId) {
-      window.scrollTo(0, 0);
       const fetchTeamDetails = async () => {
         try {
           const res = await fetch(
@@ -226,6 +225,41 @@ export default function Profile() {
       }
     } catch (err) {
       console.error("Remove member error:", err);
+      alert("Network error. Please try again.");
+    }
+  };
+
+  // Handle de-registering self from the team
+  const handleDeregister = async (teamId) => {
+    if (!confirm("Are you sure you want to leave this team?")) return;
+
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/events/update-team/`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            team_id: teamId,
+            member: profileData.passId,
+          }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Success - remove from local events list
+        setEventsRegistered((prev) => prev.filter((e) => e.team_id !== teamId));
+        alert("You have left the team successfully.");
+      } else {
+        alert(data.message || "Failed to leave the team.");
+      }
+    } catch (err) {
+      console.error("Deregister error:", err);
       alert("Network error. Please try again.");
     }
   };
@@ -363,16 +397,28 @@ export default function Profile() {
                         >
                           👥 View Team
                         </button>
-                        {/* Add Member Button */}
-                        <button
-                          className="add-member-toggle-btn"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleAddMember(event.team_id);
-                          }}
-                        >
-                          {expandedEventId === event.team_id ? '✕ Cancel' : '+ Add Member'}
-                        </button>
+                        {/* Add Member (Leader) or De-register (Member) */}
+                        {teamLeader[event.team_id]?.id === profileData.passId ? (
+                          <button
+                            className="add-member-toggle-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleAddMember(event.team_id);
+                            }}
+                          >
+                            {expandedEventId === event.team_id ? '✕ Cancel' : '+ Add Member'}
+                          </button>
+                        ) : (
+                          <button
+                            className="de-register-btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeregister(event.team_id);
+                            }}
+                          >
+                            🚪 Leave Team
+                          </button>
+                        )}
                       </div>
                     </div>
 
@@ -447,6 +493,26 @@ export default function Profile() {
                 <p className="modal-team-id">Team ID: <span>{viewTeamModal.teamId}</span></p>
 
                 <div className="modal-members-list">
+                  {/* Leader First */}
+                  {teamLeader[viewTeamModal.teamId] && (
+                    <div className="modal-member-item glass-card leader-item">
+                      <div className="member-info">
+                        <img
+                          src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${teamLeader[viewTeamModal.teamId].name}`}
+                          alt="Leader Avatar"
+                          className="member-avatar-img"
+                        />
+                        <div className="member-details">
+                          <span className="member-name">
+                            {teamLeader[viewTeamModal.teamId].name}
+                            <span className="leader-badge">Leader</span>
+                          </span>
+                          <span className="member-id">{teamLeader[viewTeamModal.teamId].id}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {/* Other Members */}
                   {teamMembers[viewTeamModal.teamId] && teamMembers[viewTeamModal.teamId].length > 0 ? (
                     teamMembers[viewTeamModal.teamId].map((member, idx) => (
                       <div key={idx} className="modal-member-item glass-card">
@@ -475,8 +541,7 @@ export default function Profile() {
                     ))
                   ) : (
                     <div className="empty-state">
-                      <p>No team members added yet.</p>
-                      <p className="sub-text">Use the "Add Member" button on the event card to build your team.</p>
+                      <p>No other team members yet.</p>
                     </div>
                   )}
                 </div>
