@@ -227,9 +227,9 @@ export default function Profile() {
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/events/update-team/`,
+        `${import.meta.env.VITE_BACKEND_URL}/events/update-team/remove-member/`,
         {
-          method: "DELETE",
+          method: "PUT",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
@@ -260,21 +260,20 @@ export default function Profile() {
   };
 
   // Handle de-registering self from the team
-  const handleDeregister = async (teamId) => {
+  const handleDeregister = async (teamId, eventName) => {
     if (!confirm("Are you sure you want to leave this team?")) return;
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/events/update-team/`,
+        `${import.meta.env.VITE_BACKEND_URL}/events/deregister/`,
         {
-          method: "DELETE",
+          method: "POST",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            team_id: teamId,
-            member: profileData.passId,
+            event_name: eventName,
           }),
         }
       );
@@ -286,7 +285,7 @@ export default function Profile() {
         setEventsRegistered((prev) => prev.filter((e) => e.team_id !== teamId));
         alert("You have left the team successfully.");
       } else {
-        alert(data.message || "Failed to leave the team.");
+        alert(data.message || data || "Failed to leave the team.");
       }
     } catch (err) {
       console.error("Deregister error:", err);
@@ -443,7 +442,7 @@ export default function Profile() {
                             className="de-register-btn"
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleDeregister(event.team_id);
+                              handleDeregister(event.team_id, event.name);
                             }}
                           >
                             🚪 Leave Team
@@ -570,7 +569,7 @@ export default function Profile() {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 }
 
