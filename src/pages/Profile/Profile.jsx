@@ -21,6 +21,7 @@ export default function Profile() {
   const [addMemberLoading, setAddMemberLoading] = useState(false);
   const [addMemberMessage, setAddMemberMessage] = useState({ type: "", text: "" });
   const [teamMembers, setTeamMembers] = useState({});
+  const [teamLeader, setTeamLeader] = useState({}); // Store leader info per team
   const [viewTeamModal, setViewTeamModal] = useState({ open: false, teamId: null, eventName: '' });
 
   useEffect(() => {
@@ -162,6 +163,7 @@ export default function Profile() {
   // Fetch team details when modal opens
   useEffect(() => {
     if (viewTeamModal.open && viewTeamModal.teamId) {
+      window.scrollTo(0, 0);
       const fetchTeamDetails = async () => {
         try {
           const res = await fetch(
@@ -176,6 +178,10 @@ export default function Profile() {
             setTeamMembers((prev) => ({
               ...prev,
               [viewTeamModal.teamId]: data.team.members,
+            }));
+            setTeamLeader((prev) => ({
+              ...prev,
+              [viewTeamModal.teamId]: data.team.leader,
             }));
           }
         } catch (err) {
@@ -455,13 +461,16 @@ export default function Profile() {
                             <span className="member-id">{member.ignus_id || ""}</span>
                           </div>
                         </div>
-                        <button
-                          className="remove-member-btn"
-                          onClick={() => handleRemoveMember(viewTeamModal.teamId, member.ignus_id || member)}
-                          title="Remove Member"
-                        >
-                          🗑️
-                        </button>
+                        {/* Only show remove button if current user is the leader AND the member being removed is not the leader */}
+                        {teamLeader[viewTeamModal.teamId]?.id === profileData.passId && (member.ignus_id || member) !== profileData.passId && (
+                          <button
+                            className="remove-member-btn"
+                            onClick={() => handleRemoveMember(viewTeamModal.teamId, member.ignus_id || member)}
+                            title="Remove Member"
+                          >
+                            🗑️
+                          </button>
+                        )}
                       </div>
                     ))
                   ) : (

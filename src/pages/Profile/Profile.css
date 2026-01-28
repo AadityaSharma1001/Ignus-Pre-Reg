@@ -516,7 +516,72 @@
 .add-member-form-row .add-member-btn {
   white-space: nowrap;
   flex-shrink: 0;
+
 }
+
+
+
+/* Premium Add Member Input Styles */
+.add-member-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.add-member-input:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15), inset 0 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.add-member-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+
+}
+
+.add-member-btn {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #d4af37;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  font-family: 'Cinzel', serif;
+
+}
+
+.add-member-btn:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(212, 175, 55, 0.2));
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-color: #d4af37;
+
+}
+
+.add-member-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+
+}
+
+
 
 /* Modal Styles - Improved */
 .modal-overlay {
