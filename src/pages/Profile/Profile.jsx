@@ -159,6 +159,33 @@ export default function Profile() {
     }
   };
 
+  // Fetch team details when modal opens
+  useEffect(() => {
+    if (viewTeamModal.open && viewTeamModal.teamId) {
+      const fetchTeamDetails = async () => {
+        try {
+          const res = await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/events/team-details/?team_id=${viewTeamModal.teamId}`,
+            {
+              method: "GET",
+              credentials: "include",
+            }
+          );
+          const data = await res.json();
+          if (res.ok && data.team) {
+            setTeamMembers((prev) => ({
+              ...prev,
+              [viewTeamModal.teamId]: data.team.members,
+            }));
+          }
+        } catch (err) {
+          console.error("Error fetching team details:", err);
+        }
+      };
+      fetchTeamDetails();
+    }
+  }, [viewTeamModal.open, viewTeamModal.teamId]);
+
   // Handle removing a member from the team
   const handleRemoveMember = async (teamId, memberIgnusId) => {
     if (!confirm("Are you sure you want to remove this member?")) return;
