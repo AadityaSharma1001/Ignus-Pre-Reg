@@ -238,7 +238,7 @@ export default function Profile() {
           },
           body: JSON.stringify({
             team_id: teamId,
-            member: memberIgnusId,
+            member: memberIgnusId.id,
           }),
         }
       );
