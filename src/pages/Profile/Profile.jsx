@@ -86,6 +86,36 @@ export default function Profile() {
     fetchProfile();
   }, []);
 
+  // Fetch team leader info for all events after profile loads
+  useEffect(() => {
+    if (eventsRegistered.length > 0) {
+      eventsRegistered.forEach(async (event) => {
+        try {
+          const res = await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/events/team-details/?team_id=${event.team_id}`,
+            {
+              method: "GET",
+              credentials: "include",
+            }
+          );
+          const data = await res.json();
+          if (res.ok && data.team) {
+            setTeamMembers((prev) => ({
+              ...prev,
+              [event.team_id]: data.team.members,
+            }));
+            setTeamLeader((prev) => ({
+              ...prev,
+              [event.team_id]: data.team.leader,
+            }));
+          }
+        } catch (err) {
+          console.error("Error fetching team details for event:", event.team_id, err);
+        }
+      });
+    }
+  }, [eventsRegistered]);
+
   const handlePassClick = () => setIsFlipped(!isFlipped);
 
   // Toggle the add member form for an event
