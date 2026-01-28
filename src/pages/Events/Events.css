@@ -1384,3 +1384,8 @@ div.online {
     /* ensures button is centered */
   }
 }
+
+.modal-content {
+  display: block !important;
+  max-width: 100% !important;
+}
