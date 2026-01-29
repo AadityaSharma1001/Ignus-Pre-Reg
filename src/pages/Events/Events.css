@@ -1460,9 +1460,9 @@ div.online {
   .event-item {
     white-space: normal !important;
     height: auto !important;
-    min-height: 52px;
-    padding: 10px 16px !important;
-    line-height: 1.25;
+    min-height: 68px;
+    padding: 14px 20px !important;
+    line-height: 1.4;
     text-align: center;
     display: flex;
     align-items: center;
