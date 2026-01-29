@@ -1449,3 +1449,30 @@ div.online {
     font-size: 1rem;
   }
 }
+
+/* ================================================= */
+/* ===== MOBILE EVENT BUTTON TEXT FIX (MODAL) ====== */
+/* ================================================= */
+
+@media screen and (max-width: 850px) {
+
+  /* Allow multi-line text inside buttons */
+  .event-item {
+    white-space: normal !important;
+    height: auto !important;
+    min-height: 52px;
+    padding: 10px 16px !important;
+    line-height: 1.25;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+  }
+
+  /* Modal event list buttons */
+  .modal-event-list .event-item {
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
+}
