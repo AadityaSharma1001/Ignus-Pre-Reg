@@ -22,13 +22,16 @@ import agenda1 from "./assests/agenda1.png";
 import agenda2 from "./assests/agenda2.png";
 import agenda3 from "./assests/agenda3.png";
 import agenda4 from "./assests/agenda4.png";
+import image1 from "./assests/image1.png";
+import image2 from "./assests/image2.png";
+
 
 const committees = [
   {
     name: "LOK SABHA",
     description:
       "The Lok Sabha committee will deliberate on the Digital Personal Data Protection (Amendment) Bill, 2026, focusing on strengthening privacy laws, regulating data usage, and ensuring accountability in the digital ecosystem.",
-    image: agenda4,
+    image: image2,
     caption:
       "Discussion on the Digital Personal Data Protection (Amendment) Bill, 2026.",
     pdf: "#",
@@ -37,7 +40,7 @@ const committees = [
     name: "UNCSW - United Nations Commission on Status of Women",
     description:
       "The UNCSW committee will deliberate on Women Reproductive Health and the formulation of a Universal Reproductive Health & Rights Framework, 2026, addressing global healthcare equity, rights-based policies, and gender justice.",
-    image: agenda4,
+    image: agenda2,
     caption:
       "Deliberation on Women Reproductive Health and formulation of a Universal Reproductive Health & Rights Framework, 2026.",
     pdf: "#",
@@ -46,7 +49,7 @@ const committees = [
     name: "UNSC - United Nations Security Council",
     description:
       "The UNSC committee will hold an emergency session on the Venezuela Crisis, assessing the legality of foreign military intervention and exploring solutions to maintain international peace and sovereignty.",
-    image: agenda4,
+    image: agenda1,
     caption:
       "Emergency session of the UNSC on Venezuela Crisis and Assessing the Legality of Foreign Military Intervention in Venezuela.",
     pdf: "#",
@@ -55,7 +58,7 @@ const committees = [
     name: "Press Council of India",
     description:
       "The Press Council of India committee will discuss the role of media in Viksit Bharat 2047, examining whether neutral and factual journalism can act as the ultimate catalyst for a developed and progressive India.",
-    image: agenda4,
+    image: image1,
     caption:
       "The Role of Media in Viksit Bharat 2047: Is Neutral and Factual Journalism the Ultimate Catalyst for a Developed India?",
     pdf: "#",
