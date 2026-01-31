@@ -1475,4 +1475,10 @@ div.online {
     font-size: 0.95rem;
     letter-spacing: 0.06em;
   }
+
+  /* Single column layout for modal event list on mobile */
+  .modal-event-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
