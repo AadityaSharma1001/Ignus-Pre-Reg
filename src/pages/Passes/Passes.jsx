@@ -39,7 +39,7 @@ const passesData = [
   { id: 4, title: "Royal Silver", subtitle: "Events + Silver Pronite Pass", price: "999", variant: "silver" },
   { id: 6, title: "Silver Pronite Pass", subtitle: "Entry to Silver Pronite", price: "499", variant: "silver" },
   { id: 7, title: "Executive Imperial", subtitle: "Discounted Imperial Gold Pass for executive students", price: "2099", variant: "glass" },
-  { id: 8, title: "Executive Royal", subtitle: "Discounted Royal Gold Pass for executive students and school students", price: "599", variant: "glass" },
+  { id: 8, title: "Executive Royal", subtitle: "Discounted Royal Gold Pass for executive and school students", price: "599", variant: "glass" },
   { id: 9, title: "Clash of Bands", subtitle: "Team Registration", price: "1799", variant: "glass" },
   { id: 10, title: "Group Dance", subtitle: "Team Registration", price: "1999", variant: "glass" },
   { id: 11, title: "Fashion Show", subtitle: "Team Registration", price: "2999", variant: "glass" },

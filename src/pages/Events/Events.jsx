@@ -50,7 +50,7 @@ const EVENT_IMAGE_MAP = {
   AAYAAM: aayam,
 
   "FASHIONSHOW-ANTARANG": antarang,
-  "GROUPDANCE-NRITYANSH": nritya,
+  "NRITYANSH": nritya,
   BANDCOMPETITION: clash,
   "STREETPLAY-AAYAAM": aayam,
 
