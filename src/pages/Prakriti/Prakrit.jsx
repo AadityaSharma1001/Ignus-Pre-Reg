@@ -6,11 +6,11 @@ import { Carousel } from 'react-responsive-carousel';
 import CounterAnimation from './CounterAnimation';
 import instaIcon from '/images/Insta.svg';
 import mailIcon from '/images/Mail.svg';
+import usePageTitle from '../../hooks/usePageTitle';
 
 
 function Prakrit() {
-
-    document.title = 'Prakriti | Ignus IIT Jodhpur'
+    usePageTitle("Prakriti");
     return (
         <div className='Prakriti_Container'>
             <div className='Prakriti_Image_Container'>

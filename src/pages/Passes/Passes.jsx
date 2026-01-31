@@ -7,6 +7,7 @@ import {
   isLoggedIn,
   isProfileComplete,
 } from "../../utils/cookies";
+import usePageTitle from "../../hooks/usePageTitle";
 
 
 // Helper component for individual pass cards
@@ -47,6 +48,7 @@ const passesData = [
 ];
 
 export default function Passes() {
+  usePageTitle("Passes");
   const loggedIn = isLoggedIn();
   const profileComplete = isProfileComplete();
 

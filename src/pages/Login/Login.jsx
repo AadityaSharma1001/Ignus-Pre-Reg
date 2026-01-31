@@ -18,8 +18,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./Login.css";
+import usePageTitle from "../../hooks/usePageTitle";
 
 export default function Auth() {
+  usePageTitle("Login");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -245,7 +247,7 @@ export default function Auth() {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (!isSignupValid()) return;
-    if(signupData.email.toLowerCase().includes("@iitj.ac.in")) {
+    if (signupData.email.toLowerCase().includes("@iitj.ac.in")) {
       toast.error("IITJ users use Google Sign Up please");
       return;
     }

@@ -3,9 +3,10 @@ import "./CA.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { isLoggedIn, isCA, getIgnusID } from "../../utils/cookies";
+import usePageTitle from "../../hooks/usePageTitle";
 
 const CA = () => {
-  document.title = "CA | Ignus 26 IIT Jodhpur";
+  usePageTitle("Campus Ambassador");
 
   const videoRef = useRef(null);
 

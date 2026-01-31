@@ -6,11 +6,11 @@ const SEO = () => {
     const description = "Experience Ignus 2026, IIT Jodhpur's flagship cultural extravaganza! Join us for four days of spectacular performances, competitions, workshops, and cultural celebrations. Featuring star-studded concerts, dance competitions, theatrical performances, art exhibitions, literary events, and much more. Don't miss India's most awaited college cultural festival that brings together talented students from across the nation. Register now to be part of this grand celebration of art, culture, and creativity!";
     const keywords = "Ignus 2026, IIT Jodhpur, cultural festival, college fest, cultural events, Ignus, Midnight Carnival ,Ignus, ignus, ignus 2026, iit jodhpur, iitj, iit jodhpur cultural fest, iit jodhpur cultural festival, ignus 2026 iit jodhpur, ignus 2026 iit jodhpur cultural fest, ignus 2026 iit jodhpur cultural festival, jodhpur iit, Social, cultfest, IITJ, IIT Jodhpur, Indian Institute of Technology - Jodhpur, Socio-Cultural fest, Cultural fest, Cultural, Social fest, college festival, Jodhpur, Rajasthan, IIT Rajasthan, Cultfest 2024, Ignus, 2024, Ignus 2024, Paper Dance, Salsa, informals, prizes, prakriti, Bohemian Convoy, pronites, flagship, igmun, february, feb, pre-register, sponsors, film making, dance, drama, fine arts, quiz, literature, music, photography, speed dating, workshops, paintball, prom night, movie screening, poker royale, EDM, Indian Ocean, Benny Dayal, Antarang, Nrityansh, Nukkad, Aayaam, coming soon, desert, events, exhibitions, competetion, iitj, 2024, largest festival in Northwest India, friends, fun, enjoy, most awaited cultfest";
     const image = "https://i.postimg.cc/sgLNkn1z/Screenshot-2025-01-12-003932.png";
-    
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Event",
-        
+
         "name": "Ignus 2026",
         "description": description,
         "image": image,
@@ -42,11 +42,10 @@ const SEO = () => {
         "eventStatus": "EventScheduled",
         "eventAttendanceMode": "OfflineEventAttendanceMode"
     };
-    
+
     return (
         <Helmet>
-            {/* Primary Meta Tags */}
-            <title>{title}</title>
+            {/* Primary Meta Tags - Title is set by individual pages using usePageTitle hook */}
             <meta name="title" content={title} />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />

@@ -11,6 +11,7 @@ import sponser2 from "./assests/sponser_2.png";
 import sponser3 from "./assests/sponser_3.jpg";
 import qr from "./assests/qr_code.png"
 import schedule_igmun from "./assests/igmun_tt.jpg";
+import usePageTitle from "../../hooks/usePageTitle";
 
 
 function scrollToRef(ref) {
@@ -68,8 +69,7 @@ const committees = [
 
 
 function Igmun() {
-
-  document.title = "IGMUN 2026 | IIT Jodhpur";
+  usePageTitle("IGMUN");
 
   return (
     <div className="igmun_app">

@@ -7,8 +7,10 @@ import MascotSection from "./sections/MascotSection";
 import MidnightCarnival from "./sections/MidnightCarnival";
 import ContactUs from "./sections/ContactUs";
 import Stats from "./sections/Stats";
+import usePageTitle from "../../hooks/usePageTitle";
 
 export default function Home() {
+  usePageTitle("Home");
   return (
     <>
       {/* Page Content */}

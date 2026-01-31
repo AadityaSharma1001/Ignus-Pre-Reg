@@ -7,8 +7,10 @@ import {
   isProfileComplete,
   clearAuthCookies,
 } from "../../utils/cookies";
+import usePageTitle from "../../hooks/usePageTitle";
 
 export default function Profile() {
+  usePageTitle("Profile");
   const [isFlipped, setIsFlipped] = useState(false);
   const [loading, setLoading] = useState(true);
 

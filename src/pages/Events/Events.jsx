@@ -30,6 +30,7 @@ import "./Events.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn, isProfileComplete } from "../../utils/cookies";
+import usePageTitle from "../../hooks/usePageTitle";
 
 const EVENT_IMAGE_MAP = {
   // Categories / Main Types
@@ -131,6 +132,7 @@ const EVENT_IMAGE_MAP = {
 };
 
 function Events() {
+  usePageTitle("Events");
   const normalizeKey = (str = "") => str.replace(/\s+/g, "").toUpperCase();
 
   const getEventDisplayName = (name) => {
