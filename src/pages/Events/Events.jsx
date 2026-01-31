@@ -149,12 +149,12 @@ function Events() {
     INFORMAL: null, // handled separately
   };
 
-  // Map cultural categories to their flagship events
+  // Map cultural categories to their flagship events (using exact backend reference_name values)
   const CULTURAL_FLAGSHIP_MAP = {
-    DANCE: "NRITYANSH",
-    DRAMA: "AAYAAM",
-    FASHION: "ANTARANG",
-    MUSIC: "THUNDERBEATS", // Clash of Bands
+    "DANCE": "Nrityansh",
+    "DRAMA": "Aayaam",
+    "FASHION&LIFESTYLE": "Antarang",
+    "MUSIC": "Clash of Bands",
   };
   // ---------- MODAL STATE ----------
   const [backendEvents, setBackendEvents] = useState([]);

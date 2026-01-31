@@ -4,8 +4,8 @@ import PrakritiLogo from './assests/1704084756722-removebg-preview.png'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import CounterAnimation from './CounterAnimation';
-import instaIcon from '/images/Insta.svg' ;
-import mailIcon from '/images/Mail.svg' ;
+import instaIcon from '/images/Insta.svg';
+import mailIcon from '/images/Mail.svg';
 
 
 function Prakrit() {
@@ -14,7 +14,7 @@ function Prakrit() {
     return (
         <div className='Prakriti_Container'>
             <div className='Prakriti_Image_Container'>
-               
+
 
                 <div className='Prakriti_Logo_Container'>
                     <img src={PrakritiLogo} alt='Prakriti' className='Prakriti_Logo' />
@@ -24,33 +24,34 @@ function Prakrit() {
 
             <div className='Prakriti_main_container'>
                 <div className='Prakriti_Container_2'>
-                        <div className='Prakriti_Container_2_left'>
-                            <h1 className='text-#192A2E media_876:text-[35px] text-[25px] font-semibold font-montserrat'>About Us</h1>
-                            <p className='media_876:text-[17px] text-[14px] font-montserrat pt-[20px]'>Prakriti, which translates to &quot;The natural world,&quot; is IGNUS&apos; social wing. The feeling of social advancement motivates us to use our social drive to improve society. We practice what we preach. By planning activities that inspire the populace and young people, Prakriti has made the decision to enlighten the future of our country.</p>
-                            <p className='media_876:text-[17px] text-[14px] font-montserrat pt-[20px]'>The feeling of social advancement motivates us to use our social drive to improve society. It inculcates various impactful events, exhibitions, workshop and competition to instil a sense of responsibility in young generation towards the society and to create awareness about the basic human rights.</p>
-                        </div>
-                        <div className='Prakriti_Container_2_Right'>
-                            <Carousel
-                                axis='horizontal'
-                                autoPlay={true}
-                                infiniteLoop={true}
-                                interval={2000}
-                                showArrows={false}
-                                // showIndicators={false} 
-                                swipeable={false}
-                                useKeyboardArrows={false}
-                                stopOnHover={false}
-                                showStatus={false} 
-                                showThumbs={false}
-                            >
+                    <div className='Prakriti_Container_2_left'>
+                        <h1 className='text-#192A2E media_876:text-[35px] text-[25px] font-semibold font-montserrat'>About Us</h1>
+                        <p className='media_876:text-[17px] text-[14px] font-montserrat pt-[20px]'>Prakriti, which translates to &quot;nature&quot;, is IGNUS&apos; social service wing. Working to inspire the youthful masses, Prakriti aims to improve society one action at a time, be it through tree plantations or blood donations.</p>
+                        <p className='media_876:text-[17px] text-[14px] font-montserrat pt-[20px]'>Our Slogan, Srishti Samarthan Sadbhawana (translating to Creation Support and Goodwill), refers to the three core pillars upon which Prakriti was founded.</p>
+                        <p className='media_876:text-[17px] text-[14px] font-montserrat pt-[20px]'>As we create opportunities for the youth to support one another and give back to their community magnanimously, Prakriti intends to lead by example by practicing what we preach. By following principles of altruism and gratitude, Prakriti intends to enlighten the future of our country, one person at a time through our various workshops and events.</p>
+                    </div>
+                    <div className='Prakriti_Container_2_Right'>
+                        <Carousel
+                            axis='horizontal'
+                            autoPlay={true}
+                            infiniteLoop={true}
+                            interval={2000}
+                            showArrows={false}
+                            // showIndicators={false} 
+                            swipeable={false}
+                            useKeyboardArrows={false}
+                            stopOnHover={false}
+                            showStatus={false}
+                            showThumbs={false}
+                        >
 
-                                <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img1.PNG?raw=true' alt='Image-1' className='Image_Prakriti rounded-[20px]' />
-                                <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img2.PNG?raw=true' alt='Image-2' className='Image_Prakriti rounded-[20px]' />
-                                <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img3.PNG?raw=true' alt='Image-3' className='Image_Prakriti rounded-[20px]' />
-                                <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img4.PNG?raw=true' alt='Image-4' className='Image_Prakriti rounded-[20px]' />
-                                <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img5.PNG?raw=true' alt='Image-5' className='Image_Prakriti rounded-[20px]' />
+                            <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img1.PNG?raw=true' alt='Image-1' className='Image_Prakriti rounded-[20px]' />
+                            <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img2.PNG?raw=true' alt='Image-2' className='Image_Prakriti rounded-[20px]' />
+                            <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img3.PNG?raw=true' alt='Image-3' className='Image_Prakriti rounded-[20px]' />
+                            <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img4.PNG?raw=true' alt='Image-4' className='Image_Prakriti rounded-[20px]' />
+                            <img src='https://github.com/PanyalaSainathReddy/Ignus-23/blob/main/frontend/static/prakriti/img5.PNG?raw=true' alt='Image-5' className='Image_Prakriti rounded-[20px]' />
 
-                            </Carousel>
+                        </Carousel>
                     </div>
                 </div>
 
@@ -161,14 +162,14 @@ function Prakrit() {
                     </div>
 
                     <div className="social-media-handles">
-                        <button> 
-                            <a href="mailto:b23ee1029@iitj.ac.in"> 
-                                <img src={mailIcon} /> 
+                        <button>
+                            <a href="mailto:b23ee1029@iitj.ac.in">
+                                <img src={mailIcon} />
                             </a>
                         </button>
-                        <button> 
-                            <a href="https://www.instagram.com/prakriti_iitj/" target="_blank" rel="noreferrer"> 
-                            <img src={instaIcon} /> 
+                        <button>
+                            <a href="https://www.instagram.com/prakriti_iitj/" target="_blank" rel="noreferrer">
+                                <img src={instaIcon} />
                             </a>
                         </button>
                     </div>

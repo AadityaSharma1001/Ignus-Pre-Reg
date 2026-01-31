@@ -5,7 +5,7 @@ import carnival_1 from "../assets/carnival_1.svg";
 export default function MidnightCarnival() {
   return (
     <section className="relative w-full overflow-hidden pt-8 pb-0 flex flex-col items-center">
-      
+
       {/* CSS for wheel rotation */}
       <style>
         {`
@@ -44,7 +44,7 @@ export default function MidnightCarnival() {
               }}
             />
           </div>
-          
+
           {/* Static wheel bottom (stand) - positioned so its top meets the center of the wheel */}
           <img
             src={ferrisWheelBottom}
@@ -68,10 +68,7 @@ export default function MidnightCarnival() {
       {/* Description */}
       {/* <div className="relative z-20 max-w-3xl mx-auto px-4 py-8 text-center">
         <p className="text-lg md:text-xl leading-relaxed text-[#FFFFFF] font-caudex">
-          The Midnight Carnival is a realm where darkness ignites imagination—
-          lights glow softer, music feels deeper, and creativity awakens after dusk.
-          It celebrates mystery, motion, and controlled chaos, transforming the night
-          into a living festival of wonder.
+          Midnight Carnival, a realm where imagination lights up in the dark. Lights shimmer and music kindles the heart. The sun sets as creativity lights everything ablaze. Wonder and excitement fill the air as the carnival beckons from afar.
         </p>
       </div> */}
     </section>

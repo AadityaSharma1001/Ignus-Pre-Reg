@@ -267,7 +267,7 @@ const CA = () => {
           <div className="about-text">
             <h1>ABOUT MAP</h1>
             <p>
-              This nationwide programme is well-known for shaping and exposing budding leaders from various colleges as efficient managers and creative beacons. Once successfully becoming a part of this elite team, the members gain an experience of a lifetime, on various fronts; be it entrepreneurial or character development. We officially call upon for ambassador registrations to build up a team of powerful professionals who'll help spread the word
+              The Ignus Ambassador Program is well-known for developing and finding budding and talented leaders from various colleges as efficient managers and creative beacons, willing to take charge. Once successfully inducted into this elite team, members will obtain valuable experience on various fronts, ranging from entrepreneurial and managerial skills to personal character development. We officially call upon ambassador registrations to formulate a team of powerful professionals who will work to spread the word.
             </p>
           </div>
 
