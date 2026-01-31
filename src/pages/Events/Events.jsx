@@ -314,7 +314,14 @@ function Events() {
     console.log("🎯 EVENTS TO SHOW IN MODAL:", matchedType.events);
 
     setModalEvents(matchedType.events);
-    setSelectedBackendEvent(null);
+    
+    // For FLAGSHIP events, automatically select the first (and only) event
+    if (category === "FLAGSHIP" && matchedType.events.length > 0) {
+      setSelectedBackendEvent(matchedType.events[0]);
+    } else {
+      setSelectedBackendEvent(null);
+    }
+    
     setIsModalOpen(true);
   }
 
@@ -382,10 +389,11 @@ function Events() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
+        { ref: flagshipRef, name: "FLAGSHIP" },
         { ref: culturalRef, name: "CULTURAL" },
         { ref: informalRef, name: "INFORMAL" },
         { ref: proniteRef, name: "PRONITE" },
-        { ref: flagshipRef, name: "FLAGSHIP" },
+        
         { ref: onlineRef, name: "ONLINE" },
       ];
 
@@ -410,6 +418,45 @@ function Events() {
 
   return (
     <div className="events-page">
+           {/* ================= FLAGSHIP ================= */}
+      <div ref={flagshipRef} className="flagship">
+        <div className="flagship-bg">
+          <img src="/images/flagship.svg" alt="" />
+        </div>
+
+        <div className="flagship-mask">
+          <img src="/images/flagship-mask.svg" alt="" />
+        </div>
+
+        <div className="flagship-wrapper">
+          <div className="flagship-heading">FLAGSHIP</div>
+          <div className="flagship-subheading-wrapper">
+            <span className="line"></span>
+            <div className="flagship-subheading">IGNUS'26</div>
+            <span className="line"></span>
+          </div>
+        </div>
+
+        <div className="flagship-events">
+          {backendEvents
+            .filter((type) => normalizeKey(type.name || type.event_type) === "FLAGSHIPEVENT")
+            .map((type) => (
+              <button
+                key={type.id}
+                className="event-item"
+                onClick={() => {
+                  const normalizedName = normalizeKey(type.reference_name);
+                  setSelectedCategoryImage(
+                    EVENT_IMAGE_MAP[normalizedName] || antarang,
+                  );
+                  handleEventClick(type.reference_name, "FLAGSHIP");
+                }}
+              >
+                {getEventDisplayName(type.reference_name)}
+              </button>
+            ))}
+        </div>
+      </div>
       {/* ================= CULTURAL ================= */}
       <div ref={culturalRef} className="cultural">
         <div className="cultural-bg">
@@ -515,45 +562,7 @@ function Events() {
         </div>
       </div>
 
-      {/* ================= FLAGSHIP ================= */}
-      <div ref={flagshipRef} className="flagship">
-        <div className="flagship-bg">
-          <img src="/images/flagship.svg" alt="" />
-        </div>
-
-        <div className="flagship-mask">
-          <img src="/images/flagship-mask.svg" alt="" />
-        </div>
-
-        <div className="flagship-wrapper">
-          <div className="flagship-heading">FLAGSHIP</div>
-          <div className="flagship-subheading-wrapper">
-            <span className="line"></span>
-            <div className="flagship-subheading">IGNUS'26</div>
-            <span className="line"></span>
-          </div>
-        </div>
-
-        <div className="flagship-events">
-          {backendEvents
-            .filter((type) => normalizeKey(type.name || type.event_type) === "FLAGSHIPEVENT")
-            .map((type) => (
-              <button
-                key={type.id}
-                className="event-item"
-                onClick={() => {
-                  const normalizedName = normalizeKey(type.reference_name);
-                  setSelectedCategoryImage(
-                    EVENT_IMAGE_MAP[normalizedName] || antarang,
-                  );
-                  handleEventClick(type.reference_name, "FLAGSHIP");
-                }}
-              >
-                {getEventDisplayName(type.reference_name)}
-              </button>
-            ))}
-        </div>
-      </div>
+ 
 
       {/* ================= ONLINE ================= */}
       <div ref={onlineRef} className="online">
