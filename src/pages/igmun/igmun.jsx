@@ -25,33 +25,40 @@ import agenda4 from "./assests/agenda4.png";
 
 const committees = [
   {
-    name: "GENERAL ASSEMBLY(GA)",
-    description: "The ongoing crisis in Sudan involves escalating violence, political instability, and a worsening humanitarian situation. This guide is designed to assist delegates in addressing the multifaceted challenges through constructive debate, collaboration, and actionable resolutions.",
-    image: agenda1,
-    caption: "Crisis in Sudan: Humanitarian Relief and Conflict Resolution",
-    pdf: "https://drive.google.com/file/d/1JqXM0N6Ggm3952Ix4lWbDLGO0cdfP2TL/view?usp=drive_link"
-
-  },
-  {
-    name: "UN Human Rights Council",
-    description: "The human rights situation in Iran has drawn significant international attention due to widespread protests and crackdowns, particularly concerning women's rights and freedom of expression. The UNHRC aims to address these violations by debating international responses and ensuring accountability while supporting civil society efforts.",
-    image: agenda2,
-    caption: "Ensuring Accountability for Human Rights Violations in Iran",
-    pdf: "https://drive.google.com/file/d/1cUZ6dDlvTRd8xJNzWTmyjkg1ZHSDozxe/view?usp=drive_link"
-  },
-  {
-    name: window.innerWidth > 500 ? "Disarmament and International Security Committee (DISEC)" : "DISEC",
-    description: "Cyber warfare and cyberterrorism represent growing threats to global security, targeting national infrastructures, financial systems, and critical institutions. As technology advances, these threats become more sophisticated, requiring international cooperation and robust frameworks to prevent escalation and ensure stability. The Disarmament and International Security Committee (DISEC) will address these challenges to promote global cybersecurity and resilience.",
-    image: agenda3,
-    caption: "Addressing the Global Threat of Cyber Warfare and Cyberterrorism",
-    pdf: "https://drive.google.com/file/d/1VLh35nrRryjzq46ZVZsjDgZ7vb2WgLoJ/view?usp=drive_link"
-  },
-  {
     name: "LOK SABHA",
-    description: "The implementation of the Goods and Services Tax (GST) in India has been a transformative step in reforming the country’s indirect taxation system. However, challenges persist in its execution, compliance, and impact on various sectors. This Lok Sabha committee discussion aims to address these challenges and propose measures to optimize GST for economic growth and transparency.",
+    description:
+      "The Lok Sabha committee will deliberate on the Digital Personal Data Protection (Amendment) Bill, 2026, focusing on strengthening privacy laws, regulating data usage, and ensuring accountability in the digital ecosystem.",
     image: agenda4,
-    caption: "Discussion on Implementation of GST",
-    pdf: "https://drive.google.com/file/d/1LmWKbQd9BOA3aVUotvb4F2owFckDmFsU/view?usp=drive_link"
+    caption:
+      "Discussion on the Digital Personal Data Protection (Amendment) Bill, 2026.",
+    pdf: "#",
+  },
+  {
+    name: "UNCSW - United Nations Commission on Status of Women",
+    description:
+      "The UNCSW committee will deliberate on Women Reproductive Health and the formulation of a Universal Reproductive Health & Rights Framework, 2026, addressing global healthcare equity, rights-based policies, and gender justice.",
+    image: agenda4,
+    caption:
+      "Deliberation on Women Reproductive Health and formulation of a Universal Reproductive Health & Rights Framework, 2026.",
+    pdf: "#",
+  },
+  {
+    name: "UNSC - United Nations Security Council",
+    description:
+      "The UNSC committee will hold an emergency session on the Venezuela Crisis, assessing the legality of foreign military intervention and exploring solutions to maintain international peace and sovereignty.",
+    image: agenda4,
+    caption:
+      "Emergency session of the UNSC on Venezuela Crisis and Assessing the Legality of Foreign Military Intervention in Venezuela.",
+    pdf: "#",
+  },
+  {
+    name: "Press Council of India",
+    description:
+      "The Press Council of India committee will discuss the role of media in Viksit Bharat 2047, examining whether neutral and factual journalism can act as the ultimate catalyst for a developed and progressive India.",
+    image: agenda4,
+    caption:
+      "The Role of Media in Viksit Bharat 2047: Is Neutral and Factual Journalism the Ultimate Catalyst for a Developed India?",
+    pdf: "#",
   },
 ];
 
@@ -153,7 +160,7 @@ function Igmun() {
               </div>
               <div className="igmun_committee-button">
                 <a href={committee.pdf} target="_blank" rel="noopener noreferrer">
-                  View Background Guide
+                  Coming soon ...
                 </a>
               </div>
             </div>
