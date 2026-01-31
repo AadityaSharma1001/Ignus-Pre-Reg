@@ -406,7 +406,8 @@ export default function Profile() {
                     />
                   </div>
                   <p className="pass-hint">
-                    Tap to view details • Present at entry
+                    Tap to view details • Present at entry<br />
+                    Purchased passes will be reflected within 24 hours.
                   </p>
                 </div>
               </div>
