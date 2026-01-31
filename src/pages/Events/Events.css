@@ -1480,5 +1480,20 @@ div.online {
   .modal-event-list {
     grid-template-columns: 1fr;
     gap: 12px;
+    width: 100%;
+    padding-right: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+
+    /* Hide scrollbar but keep scrollable */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+  }
+
+  .modal-event-list::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
   }
 }
