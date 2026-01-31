@@ -1,10 +1,10 @@
 import React from "react";
 import "./igmun.css";
 import igmun_logo from "./assests/igmun_logo.png";
-import unga from "./assests/unga.png";
-import disec from "./assests/disec.jpg";
-import lok from "./assests/lok1.png";
-import unhrc from "./assests/unhrc.png";
+import uncsw from "./assests/uncsw.png";
+import unsc from "./assests/unsc.png";
+import loksabha from "./assests/lok1.png";
+import press from "./assests/press.jpeg";
 import iit_logo from "./assests/iitj_logo3.png";
 import sponser1 from "./assests/sponser_1.jpg";
 import sponser2 from "./assests/sponser_2.png";
@@ -120,23 +120,20 @@ function Igmun() {
         </div>
         <div className="igmun_committee_intro-corners">
           <div className="igmun_committee_intro-corner top-left">
-            <img src={unga} alt="Committee 1" className="igmun_committee_intro-image" />
-            <p className="igmun_committee_intro-text">UNGC</p>
+            <img src={uncsw} alt="UNCSW" className="igmun_committee_intro-image" />
+            <p className="igmun_committee_intro-text">UNCSW</p>
           </div>
           <div className="igmun_committee_intro-corner top-right">
-            <img src={unhrc} alt="Committee 2" className="igmun_committee_intro-image" />
-            <p className="igmun_committee_intro-text">UNHRC</p>
+            <img src={unsc} alt="UNSC" className="igmun_committee_intro-image" />
+            <p className="igmun_committee_intro-text">UNSC</p>
           </div>
           <div className="igmun_committee_intro-corner bottom-left">
-            <img src={lok} alt="Committee 3" className="igmun_committee_intro-image" />
+            <img src={loksabha} alt="Lok Sabha" className="igmun_committee_intro-image" />
             <p className="igmun_committee_intro-text">Lok Sabha</p>
           </div>
           <div className="igmun_committee_intro-corner bottom-right">
-            {/* <button onClick={() => scrollToRef(disecRef)} c> */}
-
-            <img src={disec} alt="Committee 4" className="igmun_committee_intro-image" />
-            <p className="igmun_committee_intro-text">DISEC</p>
-            {/* </button> */}
+            <img src={press} alt="Press Council" className="igmun_committee_intro-image" />
+            <p className="igmun_committee_intro-text">Press Council</p>
           </div>
         </div>
       </section>
