@@ -93,6 +93,7 @@ export default function Profile() {
           isGold: userprofile.is_gold,
           isCA: userprofile.is_ca,
           qrCodeHtml: userprofile.qr_code,
+          isIITJ: user.iitj ?? false,
         });
 
         // Normalize events: handle both string and object formats
@@ -386,7 +387,9 @@ export default function Profile() {
             <div className="details-list">
               <Detail label="Email" value={profileData.email} />
               <Detail label="Phone" value={profileData.phone} />
-              <Detail label="Gender" value={profileData.gender} />
+              {!profileData.isIITJ && (
+                <Detail label="Gender" value={profileData.gender} />
+              )}
               <Detail label="College" value={profileData.college} />
               <Detail label="Year" value={profileData.year} />
             </div>
