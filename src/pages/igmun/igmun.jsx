@@ -9,15 +9,19 @@ import iit_logo from "./assests/iitj_logo3.png";
 import sponser1 from "./assests/sponser_1.jpg";
 import sponser2 from "./assests/sponser_2.png";
 import sponser3 from "./assests/sponser_3.jpg";
-import qr from "./assests/qr_code.png"
+import qr from "./assests/qr_code.png";
 import schedule_igmun from "./assests/igmun_tt.jpg";
 import usePageTitle from "../../hooks/usePageTitle";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { isLoggedIn, isProfileComplete } from "../../utils/cookies";
+import image_02 from "./assests/image_02.jpeg";
 
-
-function scrollToRef(ref) {
-  ref.current.scrollIntoView({ behavior: 'smooth' });
-};
-
+// Diplomatic background images
+import heroBg from "./assests/image_01.jpg";
+import flagsBg from "./assests/download (1).jpeg";
+import unBuildingBg from "./assests/download.jpeg";
+import unEmblem from "./assests/image_02.jpeg";
 
 import agenda1 from "./assests/agenda1.png";
 import agenda2 from "./assests/agenda2.png";
@@ -26,6 +30,9 @@ import agenda4 from "./assests/agenda4.png";
 import image1 from "./assests/image1.png";
 import image2 from "./assests/image2.png";
 
+function scrollToRef(ref) {
+  ref.current.scrollIntoView({ behavior: "smooth" });
+}
 
 const committees = [
   {
@@ -66,64 +73,153 @@ const committees = [
   },
 ];
 
-
-
 function Igmun() {
   usePageTitle("IGMUN");
+  const navigate = useNavigate();
+
+  const handleRegister = async () => {
+    // Auth guards
+    if (!isLoggedIn()) {
+      toast.info("Please login to register for IGMUN");
+      setTimeout(() => navigate("/login"), 1200);
+      return;
+    }
+
+    if (!isProfileComplete()) {
+      toast.info("Please complete your profile first");
+      setTimeout(() => navigate("/login"), 1200);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/events/register/`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            event_name: "IGMUN",
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data?.Message || data || "Registration failed");
+        return;
+      }
+
+      toast.success(data.Message || "IGMUN registered successfully 🎉");
+    } catch (error) {
+      console.error(error);
+      toast.error("Server error. Please try again later");
+    }
+  };
 
   return (
     <div className="igmun_app">
-      {/* /* Hero Section  */}
-      <section className="igmun_section igmun_hero">
-        <div className="igmun_hero-image">
-          <img src={igmun_logo} className="igmun_hero_logo1" alt="IGMUN Logo" />
-          <img src={iit_logo} className="igmun_hero_logo2" alt="IGMUN Logo" />
+      {/* ===== HERO SECTION ===== */}
+      <section
+        className="igmun_section igmun_hero"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
+        {/* Floating particles */}
+        <div className="particles">
+          {[...Array(15)].map((_, i) => (
+            <div key={i} className="particle"></div>
+          ))}
         </div>
 
+        {/* Decorative gold corners */}
+        <div className="igmun_gold-corner top-left"></div>
+        <div className="igmun_gold-corner top-right"></div>
+        <div className="igmun_gold-corner bottom-left"></div>
+        <div className="igmun_gold-corner bottom-right"></div>
 
-        <div className="igmun_hero-text">
-          <h1>IGMUN 2026</h1>
-          <p>Experience diplomacy and debate like never before.</p>
-        </div>
-        <div className="igmun_eb-button">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScRAcJcuS-nT0rwKN_09wAWw-CoKiBAWSr01a5ZT7yMls3iCw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-            Apply for Executive Board
-          </a>
+        <div className="igmun_hero-content">
+          <div className="igmun_hero-image">
+            <img
+              src={igmun_logo}
+              className="igmun_hero_logo1"
+              alt="IGMUN Logo"
+            />
+            <img
+              src={iit_logo}
+              className="igmun_hero_logo2"
+              alt="IIT Jodhpur Logo"
+            />
+          </div>
+
+          <div className="igmun_hero-text">
+            <h1>IGMUN 2026</h1>
+            <p>Experience diplomacy and debate like never before</p>
+            <span className="igmun_hero-subtitle">
+              "The Midnight Carnival" — Where Ideas Unite Nations
+            </span>
+          </div>
+
+          <div className="igmun_eb-button">
+            <button onClick={handleRegister}>
+              {!isLoggedIn()
+                ? "LOGIN TO REGISTER"
+                : !isProfileComplete()
+                  ? "COMPLETE PROFILE TO REGISTER"
+                  : "REGISTER NOW"}
+            </button>
+          </div>
         </div>
       </section>
 
-
-      {/* /* Schedule Section  */}
-      {/* <section className="igmun_section igmun_schedule">
-        <h2>Schedule</h2>
-        <img src={schedule_igmun} alt="IGMUN Schedule" className="igmun_schedule-image" />
-      </section> */}
-
-      {/* about us */}
-      <section className="igmun_section igmun_about">
+      {/* ===== ABOUT SECTION ===== */}
+      <section
+        className="igmun_section igmun_about"
+        style={{ backgroundImage: `url(${unEmblem})` }}
+      >
         <div className="igmun_about-content">
           <div className="igmun_about-image">
-            <img src={igmun_logo} alt="IGMUN Logo" />
+            <img src={image_02} alt="IGMUN Logo" />
           </div>
           <div className="igmun_about-text">
-            <h2>About Us</h2>
+            <h2>About IGMUN</h2>
             <p>
-              The Ignus Model United Nations (IGMUN) at IIT Jodhpur is a two-day conference where high school and college students debate and address global challenges.
-              Guided by the theme "Melting Mosaic", it. celebrates the fusion of cultures and ideas, fostering collaboration in Jodhpur's vibrant desert setting.
+              The{" "}
+              <span className="highlight">
+                Ignus Model United Nations (IGMUN)
+              </span>{" "}
+              at IIT Jodhpur is a prestigious two-day conference where high
+              school and college students come together to debate and address
+              pressing global challenges.
+            </p>
+            <p>
+              Guided by the theme{" "}
+              <span className="highlight">"The Midnight Carnival"</span>, the
+              conference celebrates the fusion of diverse cultures and
+              perspectives, fostering collaboration and diplomatic dialogue in
+              the vibrant desert setting of Jodhpur.
             </p>
           </div>
-
         </div>
       </section>
 
-      {/* /* Committee Intro Section  */}
-      <section className="igmun_section igmun_committee_intro">
+      {/* ===== COMMITTEE INTRO SECTION ===== */}
+      <section
+        className="igmun_section igmun_committee_intro"
+        style={{ backgroundImage: `url(${flagsBg})` }}
+      >
         <div className="igmun_committee_intro-center">
           <h2>The Model Committees</h2>
         </div>
         <div className="igmun_committee_intro-corners">
           <div className="igmun_committee_intro-corner top-left">
-            <img src={uncsw} alt="UNCSW" className="igmun_committee_intro-image" />
+            <img
+              src={uncsw}
+              alt="UNCSW"
+              className="igmun_committee_intro-image"
+            />
             <p className="igmun_committee_intro-text">UNCSW</p>
           </div>
           <div className="igmun_committee_intro-corner top-right">
@@ -131,23 +227,35 @@ function Igmun() {
             <p className="igmun_committee_intro-text">UNSC</p>
           </div>
           <div className="igmun_committee_intro-corner bottom-left">
-            <img src={loksabha} alt="Lok Sabha" className="igmun_committee_intro-image" />
+            <img
+              src={loksabha}
+              alt="Lok Sabha"
+              className="igmun_committee_intro-image"
+            />
             <p className="igmun_committee_intro-text">Lok Sabha</p>
           </div>
           <div className="igmun_committee_intro-corner bottom-right">
-            <img src={press} alt="Press Council" className="igmun_committee_intro-image" />
+            <img
+              src={press}
+              alt="Press Council"
+              className="igmun_committee_intro-image"
+            />
             <p className="igmun_committee_intro-text">Press Council</p>
           </div>
         </div>
       </section>
 
-      <section className="igmun_section igmun_committees">
-        <h2>Committees Agendas</h2>
+      {/* ===== COMMITTEES AGENDAS SECTION ===== */}
+      <section
+        className="igmun_section igmun_committees"
+        style={{ backgroundImage: `url(${unBuildingBg})` }}
+      >
+        <h2>Committee Agendas</h2>
         {committees.map((committee, index) => (
           <div
             key={index}
-            className={`igmun_committee ${index % 2 === 0 ? "igmun_left" : "igmun_right"}`}
-          // ref={committee.name === "UNGA" ? {ungaRef} : committee.name === "UNHRC" ? {unhrcRef} : committee.name === "DISEC" ? {disecRef} : {lokRef}}
+            className={`igmun_committee ${index % 2 === 0 ? "igmun_left" : "igmun_right"
+              }`}
           >
             <div className="igmun_committee-content">
               <img
@@ -159,8 +267,12 @@ function Igmun() {
                 <h4>{committee.caption}</h4>
               </div>
               <div className="igmun_committee-button">
-                <a href={committee.pdf} target="_blank" rel="noopener noreferrer">
-                  Coming soon ...
+                <a
+                  href={committee.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Coming Soon
                 </a>
               </div>
             </div>
@@ -172,66 +284,51 @@ function Igmun() {
         ))}
       </section>
 
-      {/* /* Sponsors Section  */}
-      {/* <section className="igmun_section igmun_sponsors">
-        <h2>Sponsors</h2>
-        <p>We are grateful to our sponsors for their support.</p>
-        <div className="igmun_sponsor-logos">
-          <img src={sponser1} alt="Sponsor 1" className="igmun_sponsor-logo" />
-          <img src={sponser2} alt="Sponsor 2" className="igmun_sponsor-logo" />
-          <img src={sponser3} alt="Sponsor 3" className="igmun_sponsor-logo" />
-        </div>
-      </section> */}
-
-
-      {/* /* Contact Section  */}
-      {/* Registration Section */}
-      {/* Registration Section */}
-      <section className="igmun_section igmun_registration">
+      {/* ===== REGISTRATION SECTION ===== */}
+      <section
+        className="igmun_section igmun_registration"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
         <h1 className="igmun_registration-heading">Register Now</h1>
         <div className="igmun_registration-content">
           {/* Left Division: QR Code and Register Button */}
           <div className="igmun_registration-left">
             <img src={qr} alt="QR Code" className="igmun_qr-code" />
-            <a
-              href="https://forms.gle/z3fjxS9vbmh3Bmtr9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="igmun_form-link"
-            >
-              Register Here
-            </a>
+            <div className="igmun_eb-button">
+              <button onClick={handleRegister}>
+                {!isLoggedIn()
+                  ? "LOGIN TO REGISTER"
+                  : !isProfileComplete()
+                    ? "COMPLETE PROFILE TO REGISTER"
+                    : "REGISTER NOW"}
+              </button>
+            </div>
           </div>
 
-          {/* Right Division: Text and Contact Details */}
+          {/* Right Division: Contact Details */}
           <div className="igmun_registration-right">
+            <p>For any queries, feel free to contact us at:</p>
             <p>
-              For any queries, feel free to contact us at:
+              <strong>Email:</strong>{" "}
+              <a href="mailto:igmun@iitj.ac.in">igmun@iitj.ac.in</a>
             </p>
             <p>
-              <strong>Email:</strong> <a href="mailto:igmun@iitj.ac.in">igmun@iitj.ac.in</a>
+              <strong>Raditya Saraf:</strong> 9623044888
             </p>
             <p>
-              <strong>Tejas Gupta:</strong> 9810126941
+              <strong>Surmit:</strong> 9748630772
             </p>
             <p>
-              <strong>Naman Sharma:</strong> 9763384173
-            </p>
-            <p><i>
-
-              Be part of this transformative debate experience : where ideas meet action!
-            </i>
+              <i>
+                Be part of this transformative debate experience — where ideas
+                meet action!
+              </i>
             </p>
           </div>
         </div>
       </section>
-
-
-
-
     </div>
   );
-};
-
+}
 
 export default Igmun;

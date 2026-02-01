@@ -323,7 +323,9 @@ function Events() {
 
     console.log("🎯 EVENTS TO SHOW IN MODAL:", matchedType.events);
 
-    let eventsToShow = [...matchedType.events];
+    let eventsToShow = [...matchedType.events].filter(
+      (event) => normalizeKey(event.name) !== "IGMUN"
+    );
 
     // For cultural categories, add the corresponding flagship event
     if (category === "CULTURAL") {
