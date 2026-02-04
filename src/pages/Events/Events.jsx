@@ -32,6 +32,12 @@ import { useNavigate } from "react-router-dom";
 import { isLoggedIn, isProfileComplete } from "../../utils/cookies";
 import usePageTitle from "../../hooks/usePageTitle";
 
+const DIRECT_FORM_EVENTS = {
+  "MR.ANDMS.IGNUS":
+    "https://docs.google.com/forms/d/e/1FAIpQLSfPOuMC3Fmrutpx89OcarkkAYA8r5wnov0QVlMyVkZYj7j2mQ/viewform?usp=publish-editor",
+};
+
+
 const EVENT_IMAGE_MAP = {
   // Categories / Main Types
   DANCE: dance,
@@ -142,6 +148,10 @@ function Events() {
     if (normalized === "THUNDERBEATS") return "CLASH OF BANDS";
     return name;
   };
+
+  const isDirectFormEvent = (eventName = "") =>
+  normalizeKey(eventName) === "MR.ANDMS.IGNUS";
+
 
   const navigate = useNavigate();
   const [selectedCategoryImage, setSelectedCategoryImage] = useState(null);
@@ -713,14 +723,29 @@ function Events() {
                     {modalCategory !== "INFORMAL" && (
                       <button
                         className="modal-register-btn"
-                        onClick={handleRegister}
+                        onClick={() => {
+                          // ✅ SPECIAL CASE: Mr. and Ms. Ignus
+                          if (isDirectFormEvent(selectedBackendEvent?.name)) {
+                            window.open(
+                              DIRECT_FORM_EVENTS[normalizeKey(selectedBackendEvent?.name)],
+                              "_blank"
+                            );
+                            return;
+                          }
+
+                          // default behavior (all other events)
+                          handleRegister();
+                        }}
                       >
-                        {!isLoggedIn()
-                          ? "LOGIN TO REGISTER"
-                          : !isProfileComplete()
-                            ? "COMPLETE PROFILE TO REGISTER"
-                            : "REGISTER"}
-                      </button>)}
+                        {isDirectFormEvent(selectedBackendEvent?.name)
+                          ? "REGISTER"
+                          : !isLoggedIn()
+                            ? "LOGIN TO REGISTER"
+                            : !isProfileComplete()
+                              ? "COMPLETE PROFILE TO REGISTER"
+                              : "REGISTER"}
+                      </button>
+                    )}
                   </>
                 )}
               </div>
