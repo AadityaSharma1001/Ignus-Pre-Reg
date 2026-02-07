@@ -11,7 +11,6 @@ import dance from "./images/nritya.webp";
 import clash from "./images/clash.webp";
 import aayam from "./images/aayam.webp";
 import tshirt from "./images/tshirt.webp";
-import pottery from "./images/pottery.webp";
 import stag from "./images/stag.webp";
 import duet from "./images/duet.webp";
 import war from "./images/war.webp";
@@ -23,7 +22,6 @@ import beat from "./images/beat.webp";
 import dj from "./images/dj.webp";
 import artees from "./images/artees.webp";
 import pun from "./images/pun.webp";
-import stew from "./images/stew.webp";
 import ignus from "./images/ignus.webp";
 import dub from "./images/dub.webp";
 import cos from "./images/cos.webp";
@@ -295,7 +293,7 @@ function Events() {
     {
       name: "FLASHDRAMA",
       venue: "Online",
-      date: "18 Feb",
+      date: "8 Feb",
       image: flash_drama,
       link: "https://docs.google.com/forms/d/e/1FAIpQLSf-0qkv3vvsYqYZlcQyhB2AXbXQSwkWeEtz-80FvSyrCR4h2A/viewform?usp=send_form",
       sponsor: {
@@ -309,7 +307,6 @@ function Events() {
       date: "8 Feb",
       image: photostory,
       link: "",
-
     },
     {
       name: "THEME PHOTOGRAPHY",
@@ -317,7 +314,6 @@ function Events() {
       date: "8 Feb",
       image: themePhoto,
       link: "",
-
     },
   ];
 
