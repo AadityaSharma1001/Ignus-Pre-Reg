@@ -27,6 +27,8 @@ import stew from "./images/stew.webp";
 import ignus from "./images/ignus.webp";
 import dub from "./images/dub.webp";
 import cos from "./images/cos.webp";
+import themePhoto from "./images/theme_photograph.png";
+import photostory from "./images/photostory.png";
 import "./Events.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -305,7 +307,7 @@ function Events() {
       name: "PHOTOSTORY",
       venue: "Online",
       date: "8 Feb",
-      image: drama,
+      image: photostory,
       link: "",
 
     },
@@ -313,7 +315,7 @@ function Events() {
       name: "THEME PHOTOGRAPHY",
       venue: "Online",
       date: "8 Feb",
-      image: drama,
+      image: themePhoto,
       link: "",
 
     },
