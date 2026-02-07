@@ -5,6 +5,7 @@ import art from "./images/art.webp";
 import lit from "./images/Lit.webp";
 import LifeStyle from "./images/LifeStyle.webp";
 import drama from "./images/drama.webp";
+import flash_drama from "./images/flash_drama_img.png";
 import antarang from "./images/antarang.webp";
 import dance from "./images/nritya.webp";
 import clash from "./images/clash.webp";
@@ -100,7 +101,7 @@ const EVENT_IMAGE_MAP = {
   "SLAMPOETRY-ENGLISH":
     "https://www.kulturfabrikkrawatte.de/wp-content/uploads/2022/04/PoetrySlamLogo-e1655074794832.jpeg",
   "SLAMPOETRY-HINDI/URDU":
-  "https://www.kulturfabrikkrawatte.de/wp-content/uploads/2022/04/PoetrySlamLogo-e1655074794832.jpeg",
+    "https://www.kulturfabrikkrawatte.de/wp-content/uploads/2022/04/PoetrySlamLogo-e1655074794832.jpeg",
   PUNWARS: pun,
   "3VS3DEBATE":
     "https://observatory.tec.mx/wp-content/uploads/2022/08/debate-escolar.jpg",
@@ -150,7 +151,7 @@ function Events() {
   };
 
   const isDirectFormEvent = (eventName = "") =>
-  normalizeKey(eventName) === "MR.ANDMS.IGNUS";
+    normalizeKey(eventName) === "MR.ANDMS.IGNUS";
 
 
   const navigate = useNavigate();
@@ -267,14 +268,56 @@ function Events() {
     },
   ];
 
-  const onlineEventLinks = {
-    DUBSMASH:
-      "https://docs.google.com/forms/d/e/1FAIpQLSeqF1_Zmpn7JSblNgCAfmSYySp4Vf7tSJJSysR0hxgEirVRbg/viewform",
-    "MEME MAKING":
-      "https://docs.google.com/forms/d/e/1FAIpQLSdyfPp2n4az6gJp1AaDlfHWmF_exMeC0G0Njz6KK12ujSSx8A/viewform",
-    "REEL MAKING":
-      "https://docs.google.com/forms/d/e/1FAIpQLSfJ_ZPtMYeDVouqL2WHU4Sz2BLKcgtujCrgOKSzXK4wR2r8Yg/viewform",
-  };
+  const OnlineEventsArray = [
+    {
+      name: "DUBSMASH",
+      venue: "Online",
+      date: "TBA",
+      image: dub,
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSeqF1_Zmpn7JSblNgCAfmSYySp4Vf7tSJJSysR0hxgEirVRbg/viewform",
+    },
+    {
+      name: "MEME MAKING",
+      venue: "Online",
+      date: "TBA",
+      image: "https://i.imgflip.com/1bij.jpg",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSdyfPp2n4az6gJp1AaDlfHWmF_exMeC0G0Njz6KK12ujSSx8A/viewform",
+    },
+    {
+      name: "REEL MAKING",
+      venue: "Online",
+      date: "TBA",
+      image: "",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSfJ_ZPtMYeDVouqL2WHU4Sz2BLKcgtujCrgOKSzXK4wR2r8Yg/viewform",
+    },
+    {
+      name: "FLASHDRAMA",
+      venue: "Online",
+      date: "18 Feb",
+      image: flash_drama,
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSf-0qkv3vvsYqYZlcQyhB2AXbXQSwkWeEtz-80FvSyrCR4h2A/viewform?usp=send_form",
+      sponsor: {
+        name: "KUKUTV",
+        logo: "/images/logo_kuku.png",
+      },
+    },
+    {
+      name: "PHOTOSTORY",
+      venue: "Online",
+      date: "8 Feb",
+      image: drama,
+      link: "",
+
+    },
+    {
+      name: "THEME PHOTOGRAPHY",
+      venue: "Online",
+      date: "8 Feb",
+      image: drama,
+      link: "",
+
+    },
+  ];
 
   function openModal(eventName, category) {
     if (category === "INFORMAL") {
@@ -307,6 +350,27 @@ function Events() {
     console.log("🟡 CLICKED:", { eventName, category });
 
     if (category === "PRONITE") return;
+
+    // Handle ONLINE events with frontend data
+    if (category === "ONLINE") {
+      const onlineEvent = OnlineEventsArray.find((e) => e.name === eventName);
+
+      if (onlineEvent) {
+        setSelectedCategoryImage(onlineEvent.image || null);
+        setSelectedBackendEvent({
+          name: onlineEvent.name,
+          venue: onlineEvent.venue,
+          date: onlineEvent.date,
+          link: onlineEvent.link,
+          sponsor: onlineEvent.sponsor || null,
+        });
+        setModalCategory("ONLINE");
+        setIsModalOpen(true);
+      } else {
+        toast.info("Event details coming soon");
+      }
+      return;
+    }
 
     // Set modal category early to avoid flicker
     setModalCategory(category);
@@ -630,13 +694,13 @@ function Events() {
         </div>
 
         <div className="online-events">
-          {Object.keys(onlineEventLinks).map((event) => (
+          {OnlineEventsArray.map((event) => (
             <button
-              key={event}
+              key={event.name}
               className="event-item"
-              onClick={() => handleEventClick(event, "ONLINE")}
+              onClick={() => handleEventClick(event.name, "ONLINE")}
             >
-              {event}
+              {event.name}
             </button>
           ))}
         </div>
@@ -696,7 +760,7 @@ function Events() {
                   <>
                     <h2>Select Event</h2>
 
-                    <div className="modal-event-list">
+                    <div className={`modal-event-list ${selectedEvent?.eventName && normalizeKey(selectedEvent.eventName) === "FILM" ? "modal-event-list-vertical" : ""}`}>
                       {modalEvents.map((ev) => (
                         <button
                           key={ev.id}
@@ -745,6 +809,18 @@ function Events() {
                               ? "COMPLETE PROFILE"
                               : "REGISTER"}
                       </button>
+                    )}
+
+                    {/* Sponsor section - only show if event has sponsor */}
+                    {selectedBackendEvent?.sponsor && (
+                      <div className="modal-sponsor">
+                        <span className="sponsor-text">Powered by</span>
+                        <img
+                          src={selectedBackendEvent.sponsor.logo}
+                          alt={selectedBackendEvent.sponsor.name}
+                          className="sponsor-logo"
+                        />
+                      </div>
                     )}
                   </>
                 )}
