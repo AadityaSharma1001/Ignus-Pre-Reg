@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import nritya from "./images/dance.webp";
 import music from "./images/music.webp";
 import art from "./images/art.webp";
-import lit from "./images/Lit.webp";
+import lit from "./images/lit.webp";
 import lifestyle from "./images/lifestyle.webp";
 import drama from "./images/drama.webp";
 import flash_drama from "./images/flash_drama_img.webp";
