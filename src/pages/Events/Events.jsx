@@ -22,7 +22,6 @@ import beat from "./images/beat.webp";
 import dj from "./images/dj.webp";
 import artees from "./images/artees.webp";
 import pun from "./images/pun.webp";
-import ignus from "./images/ignus.webp";
 import dub from "./images/dub.webp";
 import cos from "./images/cos.webp";
 import themePhoto from "./images/theme_photograph.webp";
