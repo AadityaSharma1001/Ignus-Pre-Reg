@@ -1,34 +1,34 @@
 import React from "react";
 import "./igmun.css";
-import igmun_logo from "./assests/igmun_logo.png";
-import uncsw from "./assests/uncsw.png";
-import unsc from "./assests/unsc.png";
-import loksabha from "./assests/lok1.png";
-import press from "./assests/press.jpeg";
-import iit_logo from "./assests/iitj_logo3.png";
-import sponser1 from "./assests/sponser_1.jpg";
-import sponser2 from "./assests/sponser_2.png";
-import sponser3 from "./assests/sponser_3.jpg";
-import qr from "./assests/qr_code.png";
-import schedule_igmun from "./assests/igmun_tt.jpg";
+import igmun_logo from "./assets/igmun_logo.png";
+import uncsw from "./assets/uncsw.png";
+import unsc from "./assets/unsc.png";
+import loksabha from "./assets/lok1.png";
+import press from "./assets/press.jpeg";
+import iit_logo from "./assets/iitj_logo3.png";
+import sponser1 from "./assets/sponser_1.jpg";
+import sponser2 from "./assets/sponser_2.png";
+import sponser3 from "./assets/sponser_3.jpg";
+import qr from "./assets/qr_code.png";
+import schedule_igmun from "./assets/igmun_tt.jpg";
 import usePageTitle from "../../hooks/usePageTitle";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn, isProfileComplete } from "../../utils/cookies";
-import image_02 from "./assests/image_02.jpeg";
+import image_02 from "./assets/image_02.jpeg";
 
 // Diplomatic background images
-import heroBg from "./assests/image_01.jpg";
-import flagsBg from "./assests/download (1).jpeg";
-import unBuildingBg from "./assests/download.jpeg";
-import unEmblem from "./assests/image_02.jpeg";
+import heroBg from "./assets/image_01.jpg";
+import flagsBg from "./assets/download (1).jpeg";
+import unBuildingBg from "./assets/download.jpeg";
+import unEmblem from "./assets/image_02.jpeg";
 
-import agenda1 from "./assests/agenda1.png";
-import agenda2 from "./assests/agenda2.png";
-import agenda3 from "./assests/agenda3.png";
-import agenda4 from "./assests/agenda4.png";
-import image1 from "./assests/image1.png";
-import image2 from "./assests/image2.png";
+import agenda1 from "./assets/agenda1.png";
+import agenda2 from "./assets/agenda2.png";
+import agenda3 from "./assets/agenda3.png";
+import agenda4 from "./assets/agenda4.png";
+import image1 from "./assets/image1.png";
+import image2 from "./assets/image2.png";
 
 function scrollToRef(ref) {
   ref.current.scrollIntoView({ behavior: "smooth" });

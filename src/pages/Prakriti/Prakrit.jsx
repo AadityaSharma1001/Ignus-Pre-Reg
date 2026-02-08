@@ -1,6 +1,6 @@
 import React from 'react'
 import './Prakriti.css'
-import PrakritiLogo from './assests/1704084756722-removebg-preview.png'
+import PrakritiLogo from './assets/1704084756722-removebg-preview.png'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import CounterAnimation from './CounterAnimation';

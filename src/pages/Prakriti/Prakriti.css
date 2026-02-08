@@ -16,7 +16,7 @@
     height: 130vh;
     background-color: #e5ffe1;
     position: relative;
-    background-image: url(./assests/bg_prakriti_hero.png);
+    background-image: url(./assets/bg_prakriti_hero.png);
     background-size: cover;
     background-position: center;
 }
@@ -146,7 +146,7 @@
 .Prakriti_Container_info_2 {
     background-color: #c2e9e2;
     /* background-image: url(https://i.postimg.cc/GtVNjhQY/bg5.jpg); */
-    background-image: url(./assests/bg_prakriti_events.png);
+    background-image: url(./assets/bg_prakriti_events.png);
     background-position: center;
     background-size: cover;
     padding: 3% 15%;
