@@ -10,7 +10,7 @@ const FLASH_DRAMA = {
   image: flashDramaImg,
   link: "https://docs.google.com/forms/d/e/1FAIpQLSf-0qkv3vvsYqYZlcQyhB2AXbXQSwkWeEtz-80FvSyrCR4h2A/viewform?usp=send_form",
   sponsor: {
-    name: "KUKUTV",
+    name: "Kuku TV",
     logo: "/images/logo_kuku.png",
   },
 };
@@ -44,7 +44,7 @@ function FlashDramaPopup() {
               <strong>Venue:</strong> {FLASH_DRAMA.venue}
             </p>
             <p>
-              <strong>Date:</strong> {FLASH_DRAMA.date}
+              <strong>Submission Deadline:</strong> {FLASH_DRAMA.date}
             </p>
 
             <div className="flash-popup-buttons">
@@ -66,6 +66,9 @@ function FlashDramaPopup() {
               </a>
             </div>
 
+            <div className="flash-popup-prize">
+              🏆 <span>Prize Pool:</span> <strong>₹25,000</strong>
+            </div>
             <div className="flash-popup-sponsor">
               <span>Powered by</span>
               <img src={FLASH_DRAMA.sponsor.logo} alt={FLASH_DRAMA.sponsor.name} />

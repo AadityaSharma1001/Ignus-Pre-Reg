@@ -184,6 +184,24 @@
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
 }
 
+/* --- Prize Pool --- */
+.flash-popup-prize {
+  margin-top: 18px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.flash-popup-prize strong {
+  color: #FABB1E;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
 /* --- Sponsor --- */
 .flash-popup-sponsor {
   margin-top: 28px;
