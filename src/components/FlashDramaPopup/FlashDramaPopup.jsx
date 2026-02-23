@@ -41,7 +41,7 @@ function FlashDramaPopup() {
             <h2>{FLASH_DRAMA.name}</h2>
 
             <p>
-              <strong>Venue:</strong> {FLASH_DRAMA.venue}
+              <strong>Registration Fee: </strong> Free
             </p>
             <p>
               <strong>Submission Deadline:</strong> {FLASH_DRAMA.date}
