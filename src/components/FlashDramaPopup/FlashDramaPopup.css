@@ -1,0 +1,265 @@
+/* ======= FLASH DRAMA AUTO-POPUP ======= */
+
+.flash-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(16.5px);
+  -webkit-backdrop-filter: blur(16.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.flash-popup-modal {
+  position: relative;
+  width: 70%;
+  max-width: 920px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  overflow: hidden;
+  color: #ffffff;
+  animation: flashPopupFadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flash-popup-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.flash-popup-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* --- Layout --- */
+.flash-popup-content {
+  display: flex;
+  height: 100%;
+}
+
+/* --- Left Image --- */
+.flash-popup-left {
+  width: 55%;
+  min-height: 340px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* subtle gradient overlay for cinematic depth */
+.flash-popup-left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent 60%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flash-popup-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flash-popup-modal:hover .flash-popup-left img {
+  transform: scale(1.04);
+}
+
+/* --- Right Details --- */
+.flash-popup-right {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.flash-popup-right h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.7rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.flash-popup-right p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+.flash-popup-right p strong {
+  color: #FABB1E;
+}
+
+/* --- Register Button --- */
+.flash-popup-register-btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #FABB1E, #f5a623);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  font-family: 'Caudex', serif;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(245, 197, 66, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flash-popup-register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(245, 197, 66, 0.55);
+}
+
+/* --- Buttons container --- */
+.flash-popup-buttons {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flash-popup-buttons .flash-popup-register-btn {
+  margin-top: 0;
+}
+
+/* --- Rulebook Button --- */
+.flash-popup-rulebook-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  font-family: 'Caudex', serif;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.flash-popup-rulebook-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* --- Sponsor --- */
+.flash-popup-sponsor {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.flash-popup-sponsor span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flash-popup-sponsor img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.flash-popup-sponsor .sponsor-name {
+  font-family: 'Caudex', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.15em;
+}
+
+/* --- Animation --- */
+@keyframes flashPopupFadeUp {
+  from {
+    transform: translateY(40px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ======= MOBILE ======= */
+@media screen and (max-width: 850px) {
+  .flash-popup-modal {
+    width: 92%;
+    max-width: none;
+  }
+
+  .flash-popup-content {
+    flex-direction: column;
+  }
+
+  .flash-popup-left {
+    width: 100%;
+    min-height: 200px;
+    max-height: 250px;
+  }
+
+  .flash-popup-right {
+    width: 100%;
+    padding: 24px 20px 28px;
+  }
+
+  .flash-popup-right h2 {
+    font-size: 1.4rem;
+  }
+
+  .flash-popup-right p {
+    font-size: 0.95rem;
+  }
+
+  .flash-popup-register-btn {
+    padding: 12px 32px;
+    font-size: 0.95rem;
+  }
+}

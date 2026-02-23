@@ -293,7 +293,7 @@ function Events() {
     {
       name: "FLASHDRAMA",
       venue: "Online",
-      date: "18 Feb",
+      date: "7 March",
       image: flash_drama,
       link: "https://docs.google.com/forms/d/e/1FAIpQLSf-0qkv3vvsYqYZlcQyhB2AXbXQSwkWeEtz-80FvSyrCR4h2A/viewform?usp=send_form",
       sponsor: {

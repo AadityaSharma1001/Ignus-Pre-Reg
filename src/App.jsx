@@ -17,6 +17,7 @@ import OAuthCallback from "./pages/OAuthCallback";
 import CA from "./pages/CA/CA";
 import Schedule from "./pages/Schedule/Schedule";
 import SEO from "./SEO";
+import FlashDramaPopup from "./components/FlashDramaPopup/FlashDramaPopup";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <SEO />
       <BrowserRouter>
         <Navbar />
+        <FlashDramaPopup />
 
         <Routes>
           {/* <Route path="/" element={<Desktop />} /> */}
